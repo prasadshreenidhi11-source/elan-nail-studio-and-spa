@@ -1,0 +1,62 @@
+* Hide default cursor and show custom ones */
+@media (pointer: fine) {
+  body {
+    cursor: default; /* Keep default or use 'none' if you want to hide default entirely */
+  }
+  
+  /* Optional: uncomment below if you want to completely hide default cursor */
+  /* body, a, button, input, select, textarea { cursor: none !important; } */
+}
+
+.elan-cursor-wrapper {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99999;
+  overflow: hidden;
+}
+
+/* Tiny sharp center dot */
+.elan-cursor-dot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  background-color: #b38b58; /* Luxury gold accent */
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+}
+
+/* Smooth lagging outer ring */
+.elan-cursor-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(123, 100, 70, 0.5); /* Soft translucent gold */
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+  will-change: transform;
+}
+
+/* Expands and highlights gracefully when hovering buttons/inputs */
+.elan-cursor-ring.is-hovered {
+  width: 54px;
+  height: 54px;
+  border-color: rgba(143, 112, 72, 0.8);
+  background-color: rgba(179, 139, 88, 0.08); /* Warm luxury aura */
+}
+
+/* Hide custom cursor automatically on touch/mobile devices */
+@media (pointer: coarse) {
+  .elan-cursor-wrapper {
+    display: none;
+  }
+}

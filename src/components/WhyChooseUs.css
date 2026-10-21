@@ -1,0 +1,627 @@
+/* =========================================
+   ELAN NAIL SPA — WHY CHOOSE US
+   Cinematic Scroll Zoom Section
+========================================= */
+
+.why-elan {
+  --why-elan-bg: #f5f0eb;
+  --why-elan-text: #201a1c;
+  --why-elan-muted: #77706e;
+  --why-elan-accent: #a8557f;
+
+  position: relative;
+  width: 100%;
+  min-height: 220vh;
+  overflow: clip;
+  background-color: #F0E5DD;
+  color: var(--why-elan-text);
+  isolation: isolate;
+}
+
+.why-elan *,
+.why-elan *::before,
+.why-elan *::after {
+  box-sizing: border-box;
+}
+
+/* =========================================
+   STICKY LAYOUT
+========================================= */
+
+.why-elan-sticky {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100svh;
+  min-height: 650px;
+  overflow: hidden;
+}
+
+.why-elan-inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: clamp(24px, 4vw, 64px);
+}
+
+/* =========================================
+   HEADING
+========================================= */
+
+.why-elan-heading {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: 20px;
+  flex-shrink: 0;
+  margin-bottom: clamp(24px, 4vh, 44px);
+}
+
+.why-elan-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.17em;
+}
+
+.why-elan-dot {
+  width: 7px;
+  height: 7px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--why-elan-accent);
+}
+
+.why-elan-heading h2 {
+  grid-column: 1;
+  margin: 0;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(44px, 6.2vw, 92px);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.065em;
+}
+
+.why-elan-heading h2 span {
+  color: #bf7770;
+  font-style: italic;
+}
+
+.why-elan-intro {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: end;
+  margin: 0 0 5px;
+  color: var(--why-elan-muted);
+  font-size: clamp(13px, 1.15vw, 16px);
+  line-height: 1.7;
+}
+
+/* =========================================
+   MAIN CONTENT
+========================================= */
+
+.why-elan-content {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+  align-items: stretch;
+  gap: clamp(28px, 5vw, 76px);
+  flex: 1;
+  min-height: 0;
+}
+
+/* =========================================
+   VIDEO WINDOW
+   Starts in its normal grid position.
+   JSX controls the scroll-driven movement.
+========================================= */
+
+.why-elan-video-shell {
+  position: relative;
+  z-index: 3;
+  align-self: center;
+  width: 100%;
+  height: min(54vh, 500px);
+  min-height: 250px;
+  overflow: hidden;
+  background: #171315;
+
+  transform: translate3d(
+      var(--video-move-x, 0px),
+      var(--video-move-y, 0px),
+      0
+    )
+    scale(var(--video-scale, 1));
+
+  transform-origin: center center;
+  border-radius: var(--video-radius, 30px);
+
+  will-change: transform, border-radius;
+  box-shadow: 0 24px 80px rgba(43, 28, 35, 0.13);
+}
+
+/* Video content */
+
+.why-elan-video-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #171315;
+}
+
+.why-elan-video-scene {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.55s ease,
+    visibility 0.55s ease;
+}
+
+.why-elan-video-scene.is-active {
+  z-index: 1;
+  opacity: 1;
+  visibility: visible;
+}
+
+.why-elan-video {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #171315;
+}
+
+/* =========================================
+   VIDEO PLACEHOLDER
+   No image or video source
+========================================= */
+
+.why-elan-video-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(20px, 3vw, 36px);
+
+  background:
+    radial-gradient(
+      ellipse at 75% 25%,
+      rgba(168, 85, 127, 0.22),
+      transparent 45%
+    ),
+    linear-gradient(
+      145deg,
+      #30252c 0%,
+      #1d171b 52%,
+      #100e10 100%
+    );
+
+  color: #f8f1f4;
+}
+
+.why-elan-video-index {
+  font-size: 0px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+}
+
+.why-elan-video-message {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(32px, 4vw, 58px);
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+}
+
+.why-elan-video-note {
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+}
+
+/* =========================================
+   VIDEO OVERLAYS
+========================================= */
+
+.why-elan-video-overlay {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  pointer-events: none;
+
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.25) 0%,
+    transparent 25%,
+    transparent 65%,
+    rgba(0, 0, 0, 0.35) 100%
+  );
+}
+
+.why-elan-video-topline,
+.why-elan-video-bottomline {
+  position: absolute;
+  z-index: 3;
+  left: clamp(20px, 3vw, 36px);
+  right: clamp(20px, 3vw, 36px);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  color: white;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  pointer-events: none;
+}
+
+.why-elan-video-topline {
+  top: clamp(20px, 3vw, 36px);
+}
+
+.why-elan-video-bottomline {
+  bottom: 32px;
+}
+
+.why-elan-video-progress {
+  position: absolute;
+  z-index: 4;
+  right: clamp(20px, 3vw, 36px);
+  bottom: 20px;
+  left: clamp(20px, 3vw, 36px);
+
+  display: flex;
+  gap: 5px;
+}
+
+.why-elan-video-progress span {
+  flex: 1;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.38);
+  transition: background 0.3s ease;
+}
+
+.why-elan-video-progress span.is-active {
+  background: white;
+}
+
+/* =========================================
+   WHY CHOOSE ELAN — BENEFITS
+========================================= */
+
+.why-elan-details {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  min-width: 0;
+
+  opacity: var(--details-opacity, 1);
+  filter: blur(var(--details-blur, 0px));
+
+  transition:
+    opacity 0.15s linear,
+    filter 0.15s linear;
+
+  will-change: opacity, filter;
+}
+
+.why-elan-details-label {
+  margin-bottom: 22px;
+  color: var(--why-elan-accent);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+}
+
+.why-elan-details-copy {
+  margin: 0 0 28px;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(22px, 2.4vw, 34px);
+  line-height: 1.28;
+  letter-spacing: -0.035em;
+}
+
+.why-elan-benefits {
+  display: flex;
+  flex-direction: column;
+}
+
+.why-elan-benefit {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr) 20px;
+  align-items: start;
+  gap: 12px;
+  padding: 20px 0;
+  border-top: 1px solid rgba(32, 26, 28, 0.14);
+}
+
+.why-elan-benefit-number {
+  padding-top: 4px;
+  color: var(--why-elan-accent);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.why-elan-benefit h3 {
+  margin: 0 0 7px;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+
+.why-elan-benefit p {
+  max-width: 370px;
+  margin: 0;
+  color: var(--why-elan-muted);
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.why-elan-benefit-arrow {
+  color: var(--why-elan-accent);
+  font-size: 18px;
+  transition: transform 0.25s ease;
+}
+
+.why-elan-benefit:hover .why-elan-benefit-arrow {
+  transform: translate(3px, -3px);
+}
+
+/* =========================================
+   CTA
+========================================= */
+
+.why-elan-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  width: fit-content;
+  max-width: 100%;
+  margin-top: 24px;
+  padding: 15px 19px;
+
+  border: 1px solid rgba(32, 26, 28, 0.2);
+  border-radius: 100px;
+
+  color: var(--why-elan-text);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.why-elan-cta:hover {
+  border-color: var(--why-elan-text);
+  background: var(--why-elan-text);
+  color: white;
+}
+
+.why-elan-cta-arrow {
+  font-size: 17px;
+}
+
+/* =========================================
+   SCROLL INDICATOR
+========================================= */
+
+.why-elan-scroll-indicator {
+  position: absolute;
+  right: clamp(24px, 4vw, 64px);
+  bottom: 20px;
+
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  color: var(--why-elan-muted);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+
+  transition: opacity 0.1s linear;
+}
+
+.why-elan-scroll-line {
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: var(--why-elan-accent);
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1000px) {
+  .why-elan {
+    min-height: 210vh;
+  }
+
+  .why-elan-inner {
+    padding: 28px;
+  }
+
+  .why-elan-content {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);
+    gap: 28px;
+  }
+
+  .why-elan-video-shell {
+    height: min(48vh, 430px);
+  }
+
+  .why-elan-benefit {
+    padding: 14px 0;
+  }
+
+  .why-elan-benefit p {
+    font-size: 11px;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 650px) {
+  .why-elan {
+    min-height: 190vh;
+  }
+
+  .why-elan-sticky {
+    height: 100svh;
+    min-height: 600px;
+  }
+
+  .why-elan-inner {
+    padding: 24px 20px;
+  }
+
+  .why-elan-heading {
+    display: block;
+    margin-bottom: 22px;
+  }
+
+  .why-elan-eyebrow {
+    margin-bottom: 16px;
+    font-size: 9px;
+  }
+
+  .why-elan-heading h2 {
+    font-size: clamp(43px, 12vw, 68px);
+  }
+
+  .why-elan-intro {
+    margin-top: 14px;
+    font-size: 12px;
+    line-height: 1.55;
+  }
+
+  .why-elan-content {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    min-height: 0;
+  }
+
+  .why-elan-video-shell {
+    flex: 0 0 auto;
+    width: 100%;
+    height: clamp(220px, 34svh, 310px);
+    min-height: 220px;
+    transform-origin: center center;
+  }
+
+  .why-elan-video-placeholder {
+    padding: 20px;
+  }
+
+  .why-elan-video-message {
+    font-size: clamp(34px, 9vw, 48px);
+  }
+
+  .why-elan-video-topline,
+  .why-elan-video-bottomline {
+    left: 20px;
+    right: 20px;
+    font-size: 8px;
+  }
+
+  .why-elan-video-topline {
+    top: 20px;
+  }
+
+  .why-elan-video-bottomline {
+    bottom: 30px;
+  }
+
+  .why-elan-details {
+    overflow: hidden;
+  }
+
+  .why-elan-details-label {
+    margin-bottom: 10px;
+    font-size: 9px;
+  }
+
+  .why-elan-details-copy {
+    margin-bottom: 14px;
+    font-size: 20px;
+  }
+
+  .why-elan-benefit {
+    grid-template-columns: 24px minmax(0, 1fr) 16px;
+    gap: 9px;
+    padding: 12px 0;
+  }
+
+  .why-elan-benefit h3 {
+    font-size: 12px;
+  }
+
+  .why-elan-benefit p {
+    font-size: 10px;
+    line-height: 1.5;
+  }
+
+  .why-elan-benefit-arrow {
+    font-size: 15px;
+  }
+
+  .why-elan-cta {
+    margin-top: 14px;
+    padding: 12px 15px;
+    font-size: 9px;
+  }
+
+  .why-elan-scroll-indicator {
+    right: 20px;
+    bottom: 12px;
+    font-size: 8px;
+  }
+
+  .why-elan-scroll-line {
+    width: 25px;
+  }
+}
+
+/* =========================================
+   REDUCED MOTION ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .why-elan *,
+  .why-elan *::before,
+  .why-elan *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

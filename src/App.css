@@ -1,0 +1,162 @@
+#root {
+  width: 100%;
+  min-height: 100vh;
+  isolation: isolate;
+}
+
+.app {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: clip;
+  background: #f5ece5; /* <--- Unified luxury cream tone matching your sections */
+  color: var(--espresso);
+}
+
+section {
+  position: relative;
+  width: 100%;
+}
+
+.section-container {
+  width: min(100% - 80px, 1440px);
+  margin-inline: auto;
+}
+
+.section-heading {
+  font-family: var(--serif);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+}
+
+.serif-italic {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  color: #bf7770; /* Synced with your Self-Care rose tone */
+}
+
+.section-description {
+  color: var(--body-text);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--body-text);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.eyebrow-line {
+  display: inline-block;
+  width: 22px;
+  height: 1px;
+  background: var(--gold-dark);
+}
+
+.dark-eyebrow {
+  color: var(--body-text);
+}
+
+.dark-eyebrow .eyebrow-line {
+  background: var(--gold-dark);
+}
+
+.primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 52px;
+  padding: 0 26px;
+  border: 1px solid var(--espresso);
+  border-radius: 100px;
+  background: var(--espresso);
+  color: var(--white);
+  font-size: 12px;
+  font-weight: 600;
+  transition:
+    background 300ms ease,
+    color 300ms ease,
+    border-color 300ms ease,
+    transform 300ms ease;
+}
+
+.primary-button:hover {
+  transform: translateY(-2px);
+  border-color: var(--gold-dark);
+  background: var(--gold-dark);
+}
+
+.secondary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 0 26px;
+  border: 1px solid rgb(33 26 25 / 25%);
+  border-radius: 100px;
+  background: transparent;
+  color: var(--espresso);
+  font-size: 12px;
+  font-weight: 600;
+  transition:
+    background 300ms ease,
+    color 300ms ease,
+    border-color 300ms ease;
+}
+
+.secondary-button:hover {
+  border-color: var(--espresso);
+  background: var(--espresso);
+  color: var(--white);
+}
+
+@media (max-width: 1024px) {
+  .section-container {
+    width: min(100% - 48px, 1440px);
+  }
+}
+
+@media (max-width: 600px) {
+  .section-container {
+    width: calc(100% - 36px);
+  }
+
+  .section-description {
+    font-size: 14px;
+  }
+
+  .primary-button,
+  .secondary-button {
+    min-height: 48px;
+    padding-inline: 21px;
+  }
+}
+
+/* Global Splash Cursor */
+.splash-cursor-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  overflow: hidden;
+}
+/* Force all sections to share the same luxury cream background */
+.app,
+section,
+.hero-section,
+.services-section,
+.selfcare-section,
+.cta-section {
+  background: #f5ece5 !important;
+}

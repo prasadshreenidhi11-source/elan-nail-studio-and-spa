@@ -1,0 +1,509 @@
+.elan-cta {
+  --products-bg: #FAF7F0;
+  --products-ink: #382720;
+  --products-muted: #8b7468;
+  --products-line: rgba(83, 55, 43, 0.17);
+  --elan-gold: #b38b58;
+  --elan-espresso: #30221d;
+  --elan-muted: #857267;
+
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 110px 6.5% 70px;
+  background: var(--products-bg);
+  color: var(--products-ink);
+  isolation: isolate;
+}
+
+.elan-cta-inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(420px, 1fr);
+  align-items: center;
+  gap: clamp(40px, 6vw, 90px);
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+}
+
+.elan-cta-glow {
+  display: none;
+}
+
+.elan-cta-copy {
+  min-width: 0;
+}
+
+.elan-cta-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+  color: var(--elan-gold);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+}
+
+.elan-cta-eyebrow > span {
+  font-size: 20px;
+}
+
+.elan-cta-copy h2 {
+  margin: 0;
+  font-family: var(--serif, Georgia, "Times New Roman", serif);
+  font-size: clamp(46px, 5.2vw, 76px);
+  font-weight: 400;
+  line-height: 1.04;
+  letter-spacing: -3px;
+}
+
+.elan-cta-copy h2 em {
+  color: var(--elan-gold);
+  font-weight: 400;
+  font-style: italic;
+}
+
+.elan-cta-description {
+  max-width: 460px;
+  margin: 28px 0 0;
+  color: var(--elan-muted);
+  font-size: 17px;
+  line-height: 1.85;
+}
+
+.elan-cta-note {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 38px;
+}
+
+.elan-cta-note-icon {
+  display: grid;
+  width: 45px;
+  height: 45px;
+  flex-shrink: 0;
+  place-items: center;
+  border: 1px solid rgba(183, 134, 112, 0.45);
+  border-radius: 50%;
+  color: var(--elan-gold);
+  font-size: 18px;
+}
+
+.elan-cta-note > div {
+  display: grid;
+  gap: 5px;
+}
+
+.elan-cta-note strong {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.elan-cta-note > div > span {
+  color: var(--elan-muted);
+  font-size: 13px;
+}
+
+.elan-cta-decoration {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 75px;
+  color: #a48b7d;
+}
+
+.elan-cta-decoration > span:first-child {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 40px;
+}
+
+.elan-cta-decoration > div {
+  width: 65px;
+  height: 1px;
+  background: #d7c3b6;
+}
+
+.elan-cta-decoration > span:last-child {
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+/* ============================================================
+   RIGHT COLUMN: FANNED DECK & GLASSFORM AREA (ANIMATED)
+   ============================================================ */
+.elan-cta-interactive-area {
+  position: relative;
+  width: 100%;
+}
+
+/* FANNED DECK STACK & LEADER LINES */
+.elan-cta-card-stack {
+  position: absolute;
+  top: 50%;
+  left: -155px;
+  transform: translateY(-50%);
+  width: 280px;
+  height: 380px;
+  pointer-events: none;
+  z-index: 3;
+  /* Smooth transition for moving and fading */
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
+}
+
+.elan-cta-card-item {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #f1e5d8;
+  border: 1px solid rgba(179, 139, 88, 0.45);
+  box-shadow: 0 20px 45px rgba(34, 22, 18, 0.22);
+  transform-origin: bottom left;
+  /* Smooth individual card transitions */
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
+  will-change: transform;
+}
+
+.elan-cta-card-item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.7s ease;
+}
+
+.elan-cta-card-item:hover img {
+  transform: scale(1.04);
+}
+
+/* --- ACTIVE SPREAD STATE (Triggered when user interacts with form) --- */
+/* --- ACTIVE SPREAD & LIGHTER STATE (MOVED FURTHER OUT) --- */
+.elan-cta-interactive-area.is-spread .elan-cta-card-stack {
+  /* Shifts the entire stack much further left */
+  transform: translateY(-50%) translateX(-140px);
+  opacity: 0.35; /* Made slightly lighter/faded for complete form readability */
+}
+
+/* Spreads each individual card out much wider */
+.elan-cta-interactive-area.is-spread .elan-cta-card-item:nth-child(1) {
+  transform: rotate(-28deg) translateX(-80px) translateY(15px) scale(0.9);
+}
+
+.elan-cta-interactive-area.is-spread .elan-cta-card-item:nth-child(2) {
+  transform: rotate(-10deg) translateX(-40px) translateY(-25px) scale(0.95);
+}
+
+.elan-cta-interactive-area.is-spread .elan-cta-card-item:nth-child(3) {
+  transform: rotate(18deg) translateX(70px) scale(0.9);
+}
+
+/* GLASSMORPHISM BOOKING CARD CONTAINER */
+.elan-booking-card {
+  position: relative;
+  z-index: 2;
+  min-width: 0;
+  padding: clamp(28px, 3.5vw, 44px);
+  border: 1px solid rgba(179, 139, 88, 0.25);
+  border-radius: 16px;
+  background: rgba(255, 253, 249, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 30px 90px rgba(48, 34, 29, 0.1);
+  transition: background 0.4s ease;
+}
+
+/* Make booking card slightly whiter/clearer when form is active */
+.elan-cta-interactive-area.is-spread .elan-booking-card {
+  background: rgba(255, 255, 255, 0.96);
+}
+
+.elan-booking-heading {
+  margin-bottom: 27px;
+}
+
+.elan-booking-eyebrow {
+  color: var(--elan-gold);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.elan-booking-heading h3 {
+  margin: 13px 0 9px;
+  font-family: var(--serif, Georgia, "Times New Roman", serif);
+  font-size: clamp(28px, 3vw, 38px);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -1px;
+}
+
+.elan-booking-heading h3 em {
+  color: var(--elan-gold);
+  font-weight: 400;
+  font-style: italic;
+}
+
+.elan-booking-heading > p {
+  margin: 0;
+  color: var(--elan-muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.elan-booking-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.elan-booking-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  color: var(--elan-espresso);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.elan-booking-form label > span {
+  display: inline;
+  color: var(--elan-gold);
+}
+
+.elan-form-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 15px;
+}
+
+.elan-booking-form input,
+.elan-booking-form select,
+.elan-booking-form textarea {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  min-height: 47px;
+  padding: 12px 14px;
+  border: 1px solid rgba(183, 134, 112, 0.25);
+  border-radius: 4px;
+  outline: none;
+  background: rgba(255, 253, 249, 0.88);
+  color: var(--elan-espresso);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 400;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.elan-booking-form textarea {
+  min-height: 85px;
+  resize: vertical;
+  line-height: 1.7;
+}
+
+.elan-booking-form input::placeholder,
+.elan-booking-form textarea::placeholder {
+  color: #a99a90;
+}
+
+.elan-booking-form input:focus,
+.elan-booking-form select:focus,
+.elan-booking-form textarea:focus {
+  border-color: var(--elan-gold);
+  box-shadow: 0 0 0 3px rgba(179, 139, 88, 0.15);
+}
+
+.elan-booking-form select {
+  cursor: pointer;
+}
+
+.elan-booking-submit {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  min-height: 54px;
+  margin-top: 5px;
+  padding: 8px 10px 8px 22px;
+  border: 1px solid var(--elan-espresso);
+  border-radius: 100px;
+  background: var(--elan-espresso);
+  color: #fffaf6;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.elan-submit-arrow {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.13);
+  font-size: 17px;
+  transition: transform 0.3s ease;
+}
+
+.elan-booking-submit:hover {
+  border-color: var(--elan-gold);
+  background: var(--elan-gold);
+}
+
+.elan-booking-submit:hover .elan-submit-arrow {
+  transform: rotate(45deg);
+}
+
+.elan-booking-disclaimer {
+  margin: -3px 0 0;
+  color: #9a887c;
+  font-size: 10px;
+  line-height: 1.7;
+  text-align: center;
+}
+
+.elan-booking-success {
+  display: flex;
+  min-height: 300px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.elan-success-icon {
+  display: grid;
+  width: 58px;
+  height: 58px;
+  place-items: center;
+  border: 1px solid var(--elan-gold);
+  border-radius: 50%;
+  color: var(--elan-gold);
+  font-size: 25px;
+}
+
+.elan-booking-success h4 {
+  margin: 24px 0 10px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 30px;
+  font-weight: 400;
+}
+
+.elan-booking-success p {
+  max-width: 340px;
+  color: var(--elan-muted);
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.elan-booking-reset {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 12px;
+  padding: 12px 18px;
+  border: 1px solid #d9c8bc;
+  border-radius: 100px;
+  background: transparent;
+  color: var(--elan-espresso);
+  font-family: inherit;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+/* ============================================================
+   TABLET RESPONSIVE (721px - 1000px)
+   ============================================================ */
+@media (max-width: 1000px) {
+  .elan-cta {
+    padding: 85px 5%;
+  }
+
+  .elan-cta-inner {
+    grid-template-columns: minmax(0, 1fr) minmax(330px, 0.95fr);
+    gap: 35px;
+  }
+
+  .elan-cta-card-stack {
+    left: -100px;
+    width: 220px;
+    height: 300px;
+    opacity: 0.95;
+    z-index: 3;
+  }
+
+  .elan-cta-copy h2 {
+    font-size: clamp(42px, 5.2vw, 57px);
+    letter-spacing: -2px;
+  }
+}
+
+/* ============================================================
+   MOBILE RESPONSIVE (max-width: 720px)
+   ============================================================ */
+@media (max-width: 720px) {
+  .elan-cta {
+    padding: 60px 20px;
+  }
+
+  .elan-cta-inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .elan-cta-copy h2 {
+    font-size: clamp(38px, 9vw, 52px);
+    line-height: 1.08;
+    letter-spacing: -1.5px;
+  }
+
+  .elan-cta-interactive-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .elan-cta-card-stack {
+    display: flex;
+    position: relative;
+    top: 0;
+    left: 0;
+    transform: none;
+    width: 220px;
+    height: 280px;
+    margin: 0 auto -40px auto;
+    z-index: 1;
+    pointer-events: auto;
+    opacity: 1 !important; /* Keep mobile cards fully vibrant */
+  }
+
+  .elan-booking-card {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding: 25px 20px;
+  }
+
+  .elan-form-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 17px;
+  }
+
+  .elan-booking-form input,
+  .elan-booking-form select,
+  .elan-booking-form textarea {
+    font-size: 16px;
+  }
+}
