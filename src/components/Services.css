@@ -39,7 +39,7 @@
   overflow: clip; 
   outline: none;
 }
-}
+
 .elan-lusion-stage:active { cursor: grabbing; }
 .elan-lusion-stage:focus-visible, .elan-lusion-card:focus-visible, .elan-lusion-arrow:focus-visible,
 .elan-lusion-close:focus-visible, .elan-lusion-book:focus-visible { outline: 2px solid var(--lusion-gold); outline-offset: 3px; }
