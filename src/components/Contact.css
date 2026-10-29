@@ -1,0 +1,607 @@
+/* ==========================================
+   ÉLAN CONTACT PAGE STYLES
+   ================================          */
+
+/* Global reset for box sizing inside page */
+.contact-page,
+.contact-page * {
+  box-sizing: border-box;
+}
+
+.contact-page {
+  background-color: #f7f3ee;
+  color: #33261d;
+  font-family: 'Montserrat', sans-serif;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Header Component Fix (Pill Navigation Header) */
+.site-header {
+  position: relative;
+  z-index: 10;
+  background-color: #fcf9f5;
+  padding: 20px 40px 0 40px;
+}
+
+.header-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 40px;
+  padding: 12px 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+.logo-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.header-nav a {
+  text-decoration: none;
+  color: #554438;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.header-nav a.active,
+.header-nav a:hover {
+  color: #a88d75;
+}
+
+/* 1. Contact Hero Section (FIXED: Removed overflow: hidden) */
+.contact-hero {
+  position: relative;
+  background-color: #fcf9f5;
+  padding: 40px 40px 60px 40px;
+  width: 100%;
+}
+
+.contact-hero-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.contact-hero-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #33261d;
+  z-index: 2;
+}
+
+.contact-hero-subtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #a88d75;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.contact-hero-title {
+  font-family: 'Cinzel', 'Playfair Display', Georgia, serif;
+  font-size: 3.5rem;
+  font-weight: 400;
+  line-height: 1.1;
+  color: #2b2118;
+  margin-bottom: 20px;
+}
+
+.contact-hero-description {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #6b5a4e;
+  max-width: 480px;
+  margin-bottom: 28px;
+}
+
+.contact-hero-location {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.85rem;
+  color: #8c735d;
+  margin-bottom: 36px;
+}
+
+.location-icon {
+  width: 18px;
+  height: 18px;
+  color: #9d7a5b;
+}
+
+.scroll-down-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #6b5a4e;
+  text-decoration: none;
+  width: fit-content;
+  transition: opacity 0.3s ease;
+}
+
+.scroll-down-btn:hover {
+  opacity: 0.75;
+}
+
+.scroll-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid #bda895;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+}
+
+/* Right Side Image Frame */
+.contact-hero-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 480px;
+  border-radius: 24px;
+  overflow: hidden; /* Local clip only for the image corners */
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+}
+
+.contact-hero-image-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: #d8cfc4; /* Placeholder tint for broken/empty images */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-hero-img.zoom-animation {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: smoothZoom 12s ease-in-out infinite alternate;
+}
+
+.hero-image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.2) 100%);
+  pointer-events: none;
+}
+
+@keyframes smoothZoom {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.08); }
+}
+
+/* 2. Main Section Grid Layout */
+.contact-main-section {
+  max-width: 1280px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.contact-grid-container {
+  display: grid;
+  grid-template-columns: 320px 1fr 300px;
+  gap: 24px;
+}
+
+/* 3. Contact Info Cards (ContactInfoCards.jsx) */
+.info-cards-col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.info-card {
+  background: #f2ebe3;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+}
+
+.info-card-img {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  background-color: #e0d5c9;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.info-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.info-card-text h3 {
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+  color: #2b2118;
+}
+
+.info-card-text .highlight-text {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #4a3c31;
+}
+
+.info-card-text .sub-text {
+  font-size: 0.75rem;
+  color: #7d6b5c;
+  margin-top: 2px;
+}
+
+.card-arrow {
+  margin-left: auto;
+  color: #a88d75;
+  border: 1px solid #d4c2b3;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+}
+
+/* 4. Booking Form (ContactBookingForm.jsx) */
+.booking-form-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+}
+
+.form-tagline {
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  color: #a88d75;
+  font-weight: 600;
+}
+
+.form-title {
+  font-family: 'Cinzel', 'Playfair Display', Georgia, serif;
+  font-size: 1.8rem;
+  color: #2b2118;
+  margin: 6px 0 10px;
+}
+
+.form-sub {
+  font-size: 0.85rem;
+  color: #7d6b5c;
+  margin-bottom: 24px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #4a3c31;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  border: 1px solid #e0d5c9;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 0.85rem;
+  background-color: #fdfbf9;
+  outline: none;
+}
+
+.submit-btn {
+  background-color: #a88d75;
+  color: white;
+  border: none;
+  width: 100%;
+  padding: 12px;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background 0.3s;
+}
+
+.submit-btn:hover {
+  background-color: #8c735d;
+}
+
+/* 5. Visual Showcase Card (ContactVisualCard.jsx) */
+.visual-card {
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  background-color: #4a3c31;
+}
+
+.visual-card-img-placeholder {
+  width: 100%;
+  height: 100%;
+  min-height: 480px;
+  background-color: #3b2f27;
+  position: relative;
+}
+
+.visual-card-img-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.visual-card-overlay {
+  position: absolute;
+  bottom: 24px;
+  left: 20px;
+  right: 20px;
+  color: white;
+}
+
+.visual-card-overlay h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-style: italic;
+  font-weight: 400;
+  margin-bottom: 12px;
+}
+
+.arrow-btn {
+  display: inline-flex;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  align-items: center;
+  justify-content: center;
+}
+
+/* 6. Map Location Banner (ContactMapBanner.jsx) */
+.location-banner-section {
+  max-width: 1280px;
+  margin: 40px auto 60px;
+  padding: 0 20px;
+}
+
+.location-banner-container {
+  display: grid;
+  grid-template-columns: 320px 1fr 380px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+}
+
+.map-placeholder {
+  height: 100%;
+  min-height: 220px;
+  background-color: #e5dfd8;
+}
+
+.location-info-block {
+  padding: 24px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.loc-tag {
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  color: #a88d75;
+}
+
+.location-info-block h2 {
+  font-family: 'Cinzel', 'Playfair Display', Georgia, serif;
+  font-size: 1.5rem;
+  margin: 4px 0 8px;
+}
+
+.location-info-block p {
+  font-size: 0.82rem;
+  color: #7d6b5c;
+  margin-bottom: 12px;
+}
+
+.loc-address {
+  display: flex;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: #4a3c31;
+  margin-bottom: 16px;
+}
+
+.directions-btn {
+  display: inline-block;
+  background-color: #a88d75;
+  color: white;
+  padding: 8px 18px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 0.8rem;
+  width: fit-content;
+}
+
+.location-side-img {
+  position: relative;
+  background-color: #2b2118;
+}
+
+.location-side-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.store-tag {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.8rem;
+  font-family: 'Cinzel', serif;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1024px) {
+  .contact-hero-container {
+    grid-template-columns: 1fr;
+  }
+  .contact-grid-container,
+  .location-banner-container {
+    grid-template-columns: 1fr;
+  }
+}
+/* ==========================================
+   SCOPED STYLES FOR UPDATED BOOKING FORM (CTA)
+   ========================================== */
+
+/* Full Name Full-Width Input */
+.booking-form-card .appointment-form .form-group input[name="fullName"] {
+  width: 100%;
+}
+
+/* Service Checkboxes Section */
+.booking-form-card .service-checkbox-section {
+  margin-top: 14px;
+  margin-bottom: 20px;
+}
+
+.booking-form-card .section-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #4a3c31;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.booking-form-card .services-checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px 14px;
+  background-color: #fdfbf9;
+  border: 1px solid #e0d5c9;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.booking-form-card .checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.booking-form-card .checkbox-item input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: #a88d75;
+  cursor: pointer;
+  margin: 0;
+}
+
+.booking-form-card .service-text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #33261d;
+  letter-spacing: 0.4px;
+}
+
+/* Date & Time Row Adjustments */
+.booking-form-card .date-time-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-items: flex-end;
+}
+
+.booking-form-card .time-select-inputs {
+  display: flex;
+  gap: 8px;
+}
+
+.booking-form-card .time-select-inputs input {
+  width: 100%;
+  text-align: center;
+  padding: 10px 6px;
+}
+
+.booking-form-card .time-select-inputs select {
+  width: auto;
+  min-width: 65px;
+  padding: 10px 8px;
+}
+
+/* Location Notice Text */
+.booking-form-card .form-location-notice {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.82rem;
+  color: #6b5a4e;
+  margin: 18px 0 24px;
+  line-height: 1.4;
+}
+
+.booking-form-card .form-location-notice strong {
+  color: #2b2118;
+}
+
+/* Mobile Responsiveness for Form */
+@media (max-width: 600px) {
+  .booking-form-card .services-checkbox-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .booking-form-card .date-time-row {
+    grid-template-columns: 1fr;
+  }
+}

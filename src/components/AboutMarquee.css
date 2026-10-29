@@ -1,0 +1,70 @@
+/* =========================================
+   ÉLAN LUXURY SPA — MOTIVATIONAL MARQUEE
+   File: src/components/AboutMarquee.css
+   ========================================= */
+
+.about-marquee-section {
+  position: relative;
+  overflow: hidden;
+  background: #f4eee9; /* Matches your exact hero background */
+  border-block: 1px solid rgba(210, 195, 182, 0.5); /* Soft border divider */
+  padding: 32px 0;
+  white-space: nowrap;
+}
+
+.about-marquee-track {
+  display: inline-flex;
+  width: max-content;
+  animation: elan-marquee-scroll 35s linear infinite;
+}
+
+.about-marquee-set {
+  display: inline-flex;
+  align-items: center;
+  gap: 48px;
+  padding-right: 48px;
+}
+
+.about-marquee-item {
+  font-family: var(--font-heading, "Cormorant Garamond", Georgia, serif);
+  font-size: clamp(26px, 3.5vw, 42px);
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: -0.02em;
+  color: #201a1c; /* Espresso text */
+  display: inline-flex;
+  align-items: center;
+  gap: 48px;
+}
+
+.about-marquee-star {
+  font-style: normal;
+  font-size: 0.65em;
+  color: #5c2638; /* Signature rose accent */
+  animation: elan-spin 10s linear infinite;
+}
+
+@keyframes elan-marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes elan-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Pause animation if user prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .about-marquee-track {
+    animation: none;
+  }
+  .about-marquee-star {
+    animation: none;
+  }
+}

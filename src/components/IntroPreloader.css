@@ -1,0 +1,82 @@
+/* ÉLAN liquid typography preloader */
+
+/* Set --elan-pre-serif / --elan-pre-sans on :root to reuse your site's fonts. */
+.elan-pre {
+  --ivory: #f8f5ef;
+  --champagne: #d8c3a5;
+  --gold: #b58a55;
+  --espresso: #382720;
+  --deep: #241a15;
+
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden; /* guarantees no horizontal overflow from the wave */
+  background:
+    radial-gradient(ellipse at 50% 42%, #fffdf8 0%, var(--ivory) 58%, #f0e9dc 100%);
+  padding: env(safe-area-inset-top, 0) env(safe-area-inset-right, 0)
+    env(safe-area-inset-bottom, 0) env(safe-area-inset-left, 0);
+  will-change: opacity;
+}
+
+/* Scroll lock while the preloader is on screen */
+html.elan-pre-lock,
+html.elan-pre-lock body {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+.elan-pre__logo {
+  display: block;
+  width: min(88vw, 780px);
+  max-width: 100%;
+  height: auto;
+  overflow: hidden;
+  opacity: 0; /* GSAP fades this in; avoids a flash before JS starts */
+  will-change: opacity, transform;
+}
+
+.elan-pre__title,
+.elan-pre__sub {
+  text-rendering: geometricPrecision;
+}
+
+.elan-pre__title {
+  font-family: var(--elan-pre-serif, 'Cormorant Garamond', 'Playfair Display', 'Times New Roman', serif);
+  font-weight: 500;
+  font-size: 176px;
+  letter-spacing: 0.08em;
+}
+
+.elan-pre__sub {
+  font-family: var(--elan-pre-sans, 'Jost', 'Helvetica Neue', Arial, sans-serif);
+  font-weight: 500;
+  font-size: 29px;
+  letter-spacing: 0.34em;
+}
+
+/* The empty vessel */
+.elan-pre__vessel text {
+  fill: var(--champagne);
+}
+
+/* Smooth, flicker-free transforms on the moving SVG groups */
+.elan-pre__rise,
+.elan-pre__slosh,
+.elan-pre__amp {
+  will-change: transform;
+}
+
+/* Reduced motion: no travelling surface, just a gentle crossfade (JS also
+   handles this, the CSS is a safety net if scripts are slow). */
+@media (prefers-reduced-motion: reduce) {
+  .elan-pre,
+  .elan-pre * {
+    animation: none !important;
+  }
+}

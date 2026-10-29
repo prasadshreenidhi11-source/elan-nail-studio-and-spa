@@ -1,0 +1,41 @@
+.scroll-video-section {
+  position: relative;
+  top: 0;
+  width: 100%;
+
+  /* Move the video up behind the floating navbar */
+  margin-top: -106px;
+
+  /* Compensate for the upward movement */
+  height: calc(100vh + 106px);
+  height: calc(100dvh + 106px);
+
+  background: #1c1512;
+  overflow: hidden;
+}
+
+.scroll-video-wrapper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scrub-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures crisp edge-to-edge coverage on all phones */
+  pointer-events: none; /* Prevents accidental touch/hold menus on mobile */
+}
+
+/* Mobile fine-tuning */
+@media (max-width: 960px) {
+  .scroll-video-section {
+    margin-top: -80px;
+    height: calc(100vh + 80px);
+    height: calc(100dvh + 80px);
+  }
+}

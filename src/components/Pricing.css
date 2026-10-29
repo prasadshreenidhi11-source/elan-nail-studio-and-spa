@@ -1,0 +1,326 @@
+.elan-inner-page {
+  width: 100%;
+  background: #f5ece4;
+  color: #201713;
+  min-height: 100vh;
+}
+
+.elan-pricing-menu-section {
+  position: relative;
+  width: 100%;
+  padding: 80px 6.5% 100px;
+  background: #f5ece4;
+  color: #2c201a;
+}
+
+.elan-pricing-container {
+  max-width: 1350px;
+  margin: 0 auto;
+}
+
+.elan-pricing-header {
+  text-align: center;
+  max-width: 650px;
+  margin: 0 auto 60px;
+}
+
+.elan-pricing-eyebrow {
+  display: inline-block;
+  color: #b38b58;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  margin-bottom: 16px;
+}
+
+.elan-pricing-header h2 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(34px, 4vw, 52px);
+  font-weight: 400;
+  line-height: 1.15;
+  color: #201713;
+}
+
+.elan-pricing-header h2 em {
+  color: #b38b58;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.elan-pricing-header p {
+  margin: 16px auto 0;
+  color: #826e63;
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+/* Stack sequence layout */
+.elan-pricing-sequence-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+/* Showcase Grid - Equal height cards */
+.elan-pricing-showcase-grid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 40px;
+  align-items: stretch;
+}
+
+/* Alternate orientation for alternating visual rhythm */
+.elan-pricing-showcase-grid.flipped {
+  grid-template-columns: 1.15fr 0.85fr;
+}
+
+.elan-pricing-showcase-grid.flipped .elan-pricing-image-card {
+  order: 2;
+}
+
+.elan-pricing-showcase-grid.flipped .elan-pricing-list-card {
+  order: 1;
+}
+
+/* Image Card Column - Fixed Equal Height */
+.elan-pricing-image-card {
+  position: relative;
+  width: 100%;
+  height: 480px; /* Locked height so all image cards match */
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px rgba(44, 32, 26, 0.12);
+  border: 1px solid rgba(179, 139, 88, 0.25);
+}
+
+.elan-pricing-image-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.elan-pricing-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(32, 23, 19, 0.85) 20%, rgba(32, 23, 19, 0.1) 80%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 35px;
+  color: #fff;
+}
+
+.elan-img-badge {
+  display: inline-block;
+  align-self: flex-start;
+  padding: 5px 14px;
+  margin-bottom: 12px;
+  border-radius: 50px;
+  background: rgba(179, 139, 88, 0.3);
+  border: 1px solid rgba(179, 139, 88, 0.5);
+  color: #f5ece4;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.elan-pricing-img-overlay h3 {
+  margin: 0 0 6px;
+  font-family: Georgia, serif;
+  font-size: 32px;
+  font-weight: 400;
+}
+
+.elan-pricing-img-overlay p {
+  margin: 0;
+  color: #e5d7cb;
+  font-size: 13px;
+}
+
+/* Pricing List Card Column - Fixed Equal Height */
+.elan-pricing-list-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 480px; /* Locked height so all pricing list cards match the images */
+  padding: 35px 40px;
+  border-radius: 20px;
+  background: rgba(255, 253, 249, 0.9);
+  border: 1px solid rgba(179, 139, 88, 0.2);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 15px 40px rgba(44, 32, 26, 0.05);
+}
+
+.elan-list-card-header {
+  margin-bottom: 15px;
+  border-bottom: 1px solid rgba(179, 139, 88, 0.2);
+  padding-bottom: 12px;
+}
+
+.elan-list-card-header h3 {
+  margin: 0;
+  font-family: Georgia, serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: #201713;
+}
+
+.elan-category-sub-note {
+  display: block;
+  margin-top: 4px;
+  font-size: 11px;
+  color: #b38b58;
+  font-style: italic;
+}
+
+.elan-pricing-items-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto; /* Ensures any slightly longer list scrolls cleanly within the fixed box */
+  padding-right: 4px;
+  flex: 1;
+}
+
+/* Custom scrollbar for consistency */
+.elan-pricing-items-wrapper::-webkit-scrollbar {
+  width: 4px;
+}
+.elan-pricing-items-wrapper::-webkit-scrollbar-thumb {
+  background: rgba(179, 139, 88, 0.3);
+  border-radius: 4px;
+}
+
+.elan-price-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.elan-item-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: #201713;
+  max-width: 72%;
+}
+
+/* Dot leaders */
+.elan-price-dots {
+  flex: 1;
+  border-bottom: 1px dotted rgba(179, 139, 88, 0.4);
+  margin-bottom: 4px;
+}
+
+.elan-price-value {
+  font-family: Georgia, serif;
+  font-size: 15px;
+  color: #201713;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.elan-pricing-book-action {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(179, 139, 88, 0.2);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.elan-menu-book-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 18px;
+  border-radius: 100px;
+  background: #201713;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.elan-btn-arrow {
+  display: grid;
+  width: 22px;
+  height: 22px;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  font-size: 12px;
+  transition: transform 0.3s ease;
+}
+
+.elan-menu-book-btn:hover {
+  background: #b38b58;
+}
+
+.elan-menu-book-btn:hover .elan-btn-arrow {
+  transform: rotate(45deg);
+}
+
+/* Note Box */
+.elan-pricing-note-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 60px;
+  padding: 22px 30px;
+  border-radius: 100px;
+  background: rgba(255, 253, 249, 0.6);
+  border: 1px solid rgba(179, 139, 88, 0.2);
+  text-align: center;
+}
+
+.elan-pricing-note-box span {
+  color: #b38b58;
+  font-size: 16px;
+}
+
+.elan-pricing-note-box p {
+  margin: 0;
+  font-size: 13px;
+  color: #826e63;
+}
+
+.elan-pricing-note-box strong {
+  color: #201713;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .elan-pricing-showcase-grid,
+  .elan-pricing-showcase-grid.flipped {
+    grid-template-columns: 1fr;
+  }
+
+  .elan-pricing-showcase-grid.flipped .elan-pricing-image-card {
+    order: 1;
+  }
+
+  .elan-pricing-showcase-grid.flipped .elan-pricing-list-card {
+    order: 2;
+  }
+
+  .elan-pricing-image-card {
+    height: 320px;
+  }
+
+  .elan-pricing-list-card {
+    height: auto;
+    min-height: 380px;
+    padding: 25px 20px;
+  }
+
+  .elan-pricing-note-box {
+    border-radius: 16px;
+    flex-direction: column;
+    text-align: center;
+  }
+}

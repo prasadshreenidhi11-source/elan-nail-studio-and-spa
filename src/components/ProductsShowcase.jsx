@@ -238,6 +238,7 @@ export default function ProductsShowcase() {
   const currentService = SERVICES.find((s) => s.id === activeServiceId);
   const currentOption = selectedOptions[activeServiceId] || currentService.options[0];
 
+  // Click handler to lock selection
   const handleOptionSelect = (option) => {
     if (selectedOptions[activeServiceId].id === option.id) return;
     setIsTransitioning(true);
@@ -248,11 +249,27 @@ export default function ProductsShowcase() {
     setTimeout(() => setIsTransitioning(false), 200);
   };
 
+  // Hover handler for option pills (instant live preview on hover)
+  const handleOptionHover = (option) => {
+    if (selectedOptions[activeServiceId].id === option.id) return;
+    setSelectedOptions((prev) => ({
+      ...prev,
+      [activeServiceId]: option
+    }));
+  };
+
+  // Click handler to lock service accordion
   const handleServiceClick = (serviceId) => {
     if (activeServiceId === serviceId) return;
     setIsTransitioning(true);
     setActiveServiceId(serviceId);
     setTimeout(() => setIsTransitioning(false), 250);
+  };
+
+  // Hover handler for service accordion items (instant reveal on hover)
+  const handleServiceHover = (serviceId) => {
+    if (activeServiceId === serviceId) return;
+    setActiveServiceId(serviceId);
   };
 
   return (
@@ -314,7 +331,7 @@ export default function ProductsShowcase() {
                     {currentOption.name}
                   </h4>
                   <p className="products-card-subtitle">
-                    {currentService.title} • {currentService.subtitle}
+                    {currentService.title} — {currentService.subtitle}
                   </p>
                 </div>
 
@@ -332,7 +349,7 @@ export default function ProductsShowcase() {
                   <span>{currentService.optionsLabel}</span>
                 </div>
                 <span className="products-selector-instruction">
-                  Click options to view live result
+                  Hover or click options to view live result
                 </span>
               </div>
 
@@ -343,6 +360,7 @@ export default function ProductsShowcase() {
                     <button
                       key={opt.id}
                       onClick={() => handleOptionSelect(opt)}
+                      onMouseEnter={() => handleOptionHover(opt)}
                       className={`products-option-pill ${isSelected ? 'is-selected' : ''}`}
                     >
                       <span
@@ -358,16 +376,17 @@ export default function ProductsShowcase() {
                 })}
 
                 {/* EXPLORE IN SERVICES BUTTON */}
-                <a href="#services" className="products-explore-service-btn">
-                  <span>Explore in Services</span>
-                  <span className="explore-btn-arrow">↗</span>
-                </a>
+               <a href="/services" className="products-explore-service-btn">
+  <span>Explore in Services</span>
+  <span className="explore-btn-arrow">↗</span>
+</a>
+
               </div>
             </div>
 
           </div>
 
-          {/* RIGHT COLUMN: ACCORDION MENU */}
+          {/* RIGHT COLUMN: ACCORDION MENU WITH HOVER REVEAL */}
           <div className="products-right-column">
             <div className="products-menu-label">
               EXPLORE OUR SERVICES
@@ -381,6 +400,7 @@ export default function ProductsShowcase() {
                   <div
                     key={service.id}
                     onClick={() => handleServiceClick(service.id)}
+                    onMouseEnter={() => handleServiceHover(service.id)}
                     className={`products-accordion-item ${isActive ? 'is-active' : ''}`}
                   >
                     <div className="products-item-top">
@@ -433,9 +453,16 @@ export default function ProductsShowcase() {
                 <span className="banner-eyebrow">Bespoke Rituals</span>
                 <h4 className="banner-title">Ready to experience this ritual in person?</h4>
               </div>
-              <button className="banner-button">
-                Book Now
-              </button>
+              <button
+className="banner-button"
+onClick={() => {
+window.location.href = "/pricing";
+}}
+
+>
+
+Book Now </button>
+
             </div>
 
           </div>

@@ -1,0 +1,229 @@
+/* =========================================
+   ÉLAN LUXURY SPA — ABOUT STORY & COVER FLOW
+   File: src/components/AboutStory.css
+   ========================================= */
+
+.about-story-section {
+  position: relative;
+  padding: clamp(80px, 10vw, 140px) 0;
+  background-color: #f4eee9; /* Exact warm nude background */
+  color: #201a1c; /* Espresso text */
+  overflow: hidden;
+}
+
+.about-story-wrap {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 clamp(24px, 5vw, 64px);
+}
+
+.about-story-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: clamp(40px, 6vw, 90px);
+  align-items: center;
+}
+
+/* =========================================
+   COVER FLOW AUTOMATIC CAROUSEL
+   ========================================= */
+
+.about-coverflow-container {
+  position: relative;
+  width: 100%;
+  height: 520px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-coverflow-track {
+  position: relative;
+  width: 100%;
+  height: 440px;
+  perspective: 1000px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-coverflow-card {
+  position: absolute;
+  width: 75%;
+  height: 100%;
+  border-radius: 32px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px -20px rgba(92, 38, 56, 0.25);
+  background: linear-gradient(135deg, #dccdc2, #b79a8c);
+  transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  cursor: pointer;
+  border: 4px solid rgba(255, 255, 255, 0.6);
+}
+
+.about-coverflow-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Cover Flow States */
+.about-coverflow-card.active-slide {
+  transform: translateX(0) scale(1) rotateY(0deg);
+  z-index: 3;
+  opacity: 1;
+  filter: brightness(1);
+}
+
+.about-coverflow-card.prev-slide {
+  transform: translateX(-32%) scale(0.85) rotateY(18deg);
+  z-index: 2;
+  opacity: 0.6;
+  filter: brightness(0.85);
+}
+
+.about-coverflow-card.next-slide {
+  transform: translateX(32%) scale(0.85) rotateY(-18deg);
+  z-index: 2;
+  opacity: 0.6;
+  filter: brightness(0.85);
+}
+
+/* Dots Indicator */
+.about-coverflow-dots {
+  display: flex;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.about-dot {
+  all: unset;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #d2c3b6;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.about-dot.active {
+  background: #5c2638; /* Signature rose accent */
+  transform: scale(1.3);
+}
+
+/* =========================================
+   STORY COPY & VISION / MISSION CARDS
+   ========================================= */
+
+.about-story-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #5c2638;
+  display: block;
+  margin-bottom: 14px;
+}
+
+.about-story-h2 {
+  margin: 0 0 24px 0;
+  font-family: var(--font-heading, "Cormorant Garamond", Georgia, serif);
+  font-size: clamp(30px, 3.8vw, 48px);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.about-story-h2 em {
+  color: #5c2638;
+  font-style: italic;
+}
+
+.about-story-text {
+  margin: 0 0 20px 0;
+  color: #6e6467;
+  font-size: 15.5px;
+  line-height: 1.75;
+}
+
+/* Vision & Mission Grid */
+.about-vm-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.about-vm-card {
+  position: relative;
+  padding: 28px 24px;
+  border: 1px solid #e3d9d0;
+  border-radius: 22px;
+  background: #efe8e1;
+  transition: background 0.5s ease, color 0.5s ease, border-color 0.5s ease, transform 0.5s cubic-bezier(0.19, 0.85, 0.2, 1), box-shadow 0.5s ease;
+  overflow: hidden;
+}
+
+.about-vm-card:hover {
+  background: #5c2638;
+  border-color: #5c2638;
+  color: #f6efe9;
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px -15px rgba(92, 38, 56, 0.4);
+}
+
+.about-card-num {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: #5c2638;
+  transition: color 0.5s ease;
+}
+
+.about-vm-card:hover .about-card-num {
+  color: #f0c9d3;
+}
+
+.about-vm-card h3 {
+  margin: 14px 0 10px 0;
+  font-family: var(--font-heading, "Cormorant Garamond", Georgia, serif);
+  font-weight: 400;
+  font-size: 24px;
+  letter-spacing: -0.01em;
+}
+
+.about-vm-card p {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: #6e6467;
+  transition: color 0.5s ease;
+}
+
+.about-vm-card:hover p {
+  color: rgba(246, 239, 233, 0.85);
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 1024px) {
+  .about-story-grid {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+  .about-coverflow-container {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .about-vm-grid {
+    grid-template-columns: 1fr;
+  }
+}

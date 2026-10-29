@@ -1,0 +1,32 @@
+.scribble-container {
+  width: 100%;
+  max-width: 400px;
+  margin: 20px auto;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.scribble-svg {
+  width: 100%;
+  height: auto;
+}
+
+/* The magic SVG stroke-dash animation */
+.scribble-path {
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+  animation: drawScribble 3s ease-in-out infinite alternate;
+}
+
+@keyframes drawScribble {
+  0% {
+    stroke-dashoffset: 600;
+  }
+  50% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -600;
+  }
+}

@@ -1,123 +1,161 @@
 import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { Phone, ArrowUpRight } from "lucide-react";
 import "./Header.css";
 
+// Put your logo at: public/images/logo.png
+const LOGO_SRC = "/images/logo.png";
+const LOGO_ALT = "Élan Nail Studio & Spa";
+const PHONE_HREF = "tel:+919843042996";
+const PHONE_TEXT = "+91 98430 42996";
+
+// Add data-scroll-scrub to your scroll scrub section (the pinned section or its tall wrapper)
+const SCRUB_SELECTOR = "[data-scroll-scrub], .scroll-scrub, .scrub-section";
+
 const navigation = [
-{ label: "Home", href: "#home" },
-{ label: "About", href: "#about" },
-{ label: "Services", href: "#services" },
-{ label: "Pricing", href: "#pricing" },
-{ label: "Contact", href: "#contact" },
+  { label: "Home", to: "/" },
+  { label: "About", to: "/about" },
+  { label: "Services", to: "/services" },
+  { label: "Pricing", to: "/pricing" },
+  { label: "Contact", to: "/contact" },
 ];
 
 function Header() {
-const [scrolled, setScrolled] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+const [scrubActive, setScrubActive] = useState(false);
 const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
 
 useEffect(() => {
-const handleScroll = () => {
-setScrolled(window.scrollY > 30);
-};
+  const handleScrubState = (event) => {
+    setScrubActive(Boolean(event.detail?.active));
+  };
 
+  window.addEventListener("elan-scrub-state", handleScrubState);
 
-handleScroll();
+  return () => {
+    window.removeEventListener("elan-scrub-state", handleScrubState);
+  };
+}, []);
+  // Keep the header synchronized with the scroll-scrub animation
+useEffect(() => {
+  let frame = 0;
 
-window.addEventListener("scroll", handleScroll, { passive: true });
+  const updateScrollState = () => {
+    frame = 0;
+    setScrolled(window.scrollY > 40);
+  };
 
-return () => window.removeEventListener("scroll", handleScroll);
+  const handleScroll = () => {
+    if (!frame) {
+      frame = requestAnimationFrame(updateScrollState);
+    }
+  };
 
+  updateScrollState();
 
+  window.addEventListener("scroll", handleScroll, { passive: true });
+  window.addEventListener("resize", handleScroll);
+
+  return () => {
+    if (frame) cancelAnimationFrame(frame);
+
+    window.removeEventListener("scroll", handleScroll);
+    window.removeEventListener("resize", handleScroll);
+  };
 }, []);
 
-useEffect(() => {
-document.body.classList.toggle("menu-open", menuOpen);
+  // Close the menu on route change
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [location.pathname]);
 
+  // Lock page scroll while the mobile menu is open
+  useEffect(() => {
+    document.body.classList.toggle("menu-open", menuOpen);
+    return () => document.body.classList.remove("menu-open");
+  }, [menuOpen]);
 
-return () => document.body.classList.remove("menu-open");
+  // Close the menu with Escape
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKey = (e) => e.key === "Escape" && setMenuOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [menuOpen]);
 
+  const closeMenu = () => setMenuOpen(false);
 
-}, [menuOpen]);
+  const isActive = (path) =>
+    path === "/"
+      ? location.pathname === "/"
+      : location.pathname === path || location.pathname.startsWith(`${path}/`);
 
-const closeMenu = () => setMenuOpen(false);
+const headerClass = [
+  "site-header",
+  scrolled ? "is-scrolled" : "",
+  scrubActive && !menuOpen ? "is-hidden" : "",
+  menuOpen ? "menu-is-open" : "",
+]
+  .filter(Boolean)
+  .join(" ");
 
-return (
-<header
-className={`site-header ${scrolled ? "is-scrolled" : ""} ${
-        menuOpen ? "menu-is-open" : ""
-      }`}
-> <div className="header-inner"> <a
-       href="#home"
-       className="brand-logo"
-       aria-label="Elan Nail Spa home"
-       onClick={closeMenu}
-     > <span className="brand-name">élan</span> <span className="brand-subtitle">NAIL STUDIO & SPA</span> </a>
+  return (
+    <header className={headerClass}>
+      <div className="header-inner">
+        <Link to="/" className="brand-logo" aria-label="Élan Nail Studio & Spa home" onClick={closeMenu}>
+          <img src={LOGO_SRC} alt={LOGO_ALT} className="brand-logo-img" />
+        </Link>
 
-
-    <nav
-      className={`header-nav ${menuOpen ? "nav-open" : ""}`}
-      id="primary-navigation"
-      aria-label="Main navigation"
-    >
-      <div className="mobile-nav-brand">
-        <span className="mobile-brand-name">élan</span>
-        <span>NAIL STUDIO & SPA</span>
-      </div>
-
-      {navigation.map((item, index) => (
-        <a
-          href={item.href}
-          className="nav-link"
-          style={{ "--nav-index": index }}
-          key={item.label}
-          onClick={closeMenu}
+        <nav
+          id="primary-navigation"
+          className={`header-nav ${menuOpen ? "nav-open" : ""}`}
+          aria-label="Main navigation"
         >
-          <span className="nav-link-text">{item.label}</span>
-          <span className="nav-link-line" />
-        </a>
-      ))}
+          {navigation.map((item) => {
+            const active = isActive(item.to);
+            return (
+              <Link
+                key={item.label}
+                to={item.to}
+                className={`nav-link ${active ? "active" : ""}`}
+                aria-current={active ? "page" : undefined}
+                onClick={closeMenu}
+              >
+                {item.label}
+                <span className="nav-link-line" />
+              </Link>
+            );
+          })}
 
-      <a
-        href="tel:9843042996"
-        className="mobile-call-button"
-        onClick={closeMenu}
-      >
-        <span>Call the studio</span>
-        <span>↗</span>
-      </a>
+          <a href={PHONE_HREF} className="mobile-call-button" onClick={closeMenu}>
+            <Phone size={16} />
+            <span>Call the studio</span>
+          </a>
+        </nav>
 
-      <span className="mobile-nav-caption">
-        A little time, just for you.
-      </span>
-    </nav>
+        <div className="header-actions">
+          <a href={PHONE_HREF} className="header-call" aria-label={`Call Élan Nail Studio & Spa at ${PHONE_TEXT}`}>
+            <Phone size={15} strokeWidth={1.8} />
+            <span className="call-number">{PHONE_TEXT}</span>
+            <ArrowUpRight size={15} strokeWidth={1.8} />
+          </a>
 
-    <div className="header-actions">
-      <a href="tel:9843042996" className="header-call">
-        <span className="call-icon" aria-hidden="true">
-          ↗
-        </span>
-
-        <span className="call-copy">
-          <span className="call-label">BOOK YOUR VISIT</span>
-          <span className="call-number">98430 42996</span>
-        </span>
-      </a>
-
-      <button
-        type="button"
-        className={`menu-toggle ${menuOpen ? "toggle-active" : ""}`}
-        aria-label={menuOpen ? "Close navigation" : "Open navigation"}
-        aria-expanded={menuOpen}
-        aria-controls="primary-navigation"
-        onClick={() => setMenuOpen((previous) => !previous)}
-      >
-        <span />
-        <span />
-      </button>
-    </div>
-  </div>
-</header>
-
-
-);
+          <button
+            type="button"
+            className={`menu-toggle ${menuOpen ? "toggle-active" : ""}`}
+            aria-label={menuOpen ? "Close navigation" : "Open navigation"}
+            aria-expanded={menuOpen}
+            aria-controls="primary-navigation"
+            onClick={() => setMenuOpen((prev) => !prev)}
+          >
+            <span />
+            <span />
+          </button>
+        </div>
+      </div>
+    </header>
+  );
 }
 
 export default Header;

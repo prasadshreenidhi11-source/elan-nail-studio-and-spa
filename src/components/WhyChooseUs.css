@@ -1,21 +1,35 @@
 /* =========================================
    ELAN NAIL SPA — WHY CHOOSE US
-   Cinematic Scroll Zoom Section
+   Orbit layout · premium animated
+   Fonts + colors: unchanged from your original
+   (Playfair Display + your body font, loaded globally)
 ========================================= */
 
-.why-elan {
-  --why-elan-bg: #f5f0eb;
+:root {
+  --why-elan-bg: #f4eee9;
+  --why-elan-card-bg: #efe8e1;
+  --why-elan-card-border: #e3d9d0;
   --why-elan-text: #201a1c;
-  --why-elan-muted: #77706e;
-  --why-elan-accent: #a8557f;
+  --why-elan-muted: #6e6467;
+  --why-elan-accent: #5c2638;
+  --why-elan-tan: #a77b52;
+  --why-elan-border: #d2c3b6;
+  --why-elan-cream: #f6efe9;
+  --why-elan-ease: cubic-bezier(0.19, 0.85, 0.2, 1);
+}
 
+.why-elan {
   position: relative;
   width: 100%;
-  min-height: 220vh;
-  overflow: clip;
-  background-color: #F0E5DD;
+  min-height: 100vh;
+  background-color: var(--why-elan-bg);
   color: var(--why-elan-text);
-  isolation: isolate;
+  padding: 48px clamp(24px, 5vw, 64px) 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .why-elan *,
@@ -24,604 +38,648 @@
   box-sizing: border-box;
 }
 
-/* =========================================
-   STICKY LAYOUT
-========================================= */
-
-.why-elan-sticky {
-  position: sticky;
-  top: 0;
-  width: 100%;
-  height: 100svh;
-  min-height: 650px;
-  overflow: hidden;
+.why-elan button {
+  font-family: inherit;
 }
 
-.why-elan-inner {
-  position: relative;
+.why-elan :focus-visible {
+  outline: 2px solid var(--why-elan-accent);
+  outline-offset: 3px;
+}
+
+@keyframes why-elan-up {
+  to { transform: none; }
+}
+@keyframes why-elan-draw {
+  from { stroke-dashoffset: 1; }
+  to { stroke-dashoffset: 0; }
+}
+@keyframes why-elan-rise {
+  to { opacity: 1; transform: none; }
+}
+@keyframes why-elan-spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes why-elan-breathe {
+  from { transform: scale(1); }
+  to { transform: scale(1.09); }
+}
+
+/* =========================================
+   TOP ROW & HEADINGS
+========================================= */
+
+.why-elan-top-row {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
   width: 100%;
-  height: 100%;
-  padding: clamp(24px, 4vw, 64px);
+  opacity: 0;
+  transform: translateY(-12px);
 }
-
-/* =========================================
-   HEADING
-========================================= */
-
-.why-elan-heading {
-  position: relative;
-  z-index: 2;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: end;
-  gap: 20px;
-  flex-shrink: 0;
-  margin-bottom: clamp(24px, 4vh, 44px);
+.why-elan.is-in .why-elan-top-row {
+  animation: why-elan-rise 1s var(--why-elan-ease) forwards;
 }
 
 .why-elan-eyebrow {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 20px;
-  font-size: 10px;
+  gap: 8px;
+  font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.17em;
+  letter-spacing: 0.16em;
+  color: var(--why-elan-text);
 }
 
-.why-elan-dot {
-  width: 7px;
-  height: 7px;
-  flex-shrink: 0;
-  border-radius: 50%;
-  background: var(--why-elan-accent);
+.why-elan-sparkle {
+  display: inline-block;
+  color: var(--why-elan-accent);
+  font-size: 14px;
+  animation: why-elan-spin 8s linear infinite;
 }
 
-.why-elan-heading h2 {
-  grid-column: 1;
+.why-elan-subtitle {
+  margin: 0;
+  color: var(--why-elan-text);
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: right;
+  font-weight: 400;
+}
+
+.why-elan-heading-row {
+  display: grid;
+  grid-template-columns: 1fr minmax(280px, 440px);
+  align-items: end;
+  gap: clamp(24px, 4vw, 56px);
+  margin: 12px 0 40px;
+}
+
+.why-elan-title {
   margin: 0;
   font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(44px, 6.2vw, 92px);
+  font-size: clamp(52px, 6.8vw, 96px);
   font-weight: 400;
   line-height: 0.95;
-  letter-spacing: -0.065em;
+  letter-spacing: -0.04em;
+  color: var(--why-elan-text);
 }
 
-.why-elan-heading h2 span {
-  color: #bf7770;
-  font-style: italic;
-}
-
-.why-elan-intro {
-  grid-column: 2;
-  grid-row: 1 / span 2;
-  align-self: end;
-  margin: 0 0 5px;
-  color: var(--why-elan-muted);
-  font-size: clamp(13px, 1.15vw, 16px);
-  line-height: 1.7;
-}
-
-/* =========================================
-   MAIN CONTENT
-========================================= */
-
-.why-elan-content {
-  position: relative;
-  display: grid;
-  grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
-  align-items: stretch;
-  gap: clamp(28px, 5vw, 76px);
-  flex: 1;
-  min-height: 0;
-}
-
-/* =========================================
-   VIDEO WINDOW
-   Starts in its normal grid position.
-   JSX controls the scroll-driven movement.
-========================================= */
-
-.why-elan-video-shell {
-  position: relative;
-  z-index: 3;
-  align-self: center;
-  width: 100%;
-  height: min(54vh, 500px);
-  min-height: 250px;
-  overflow: hidden;
-  background: #171315;
-
-  transform: translate3d(
-      var(--video-move-x, 0px),
-      var(--video-move-y, 0px),
-      0
-    )
-    scale(var(--video-scale, 1));
-
-  transform-origin: center center;
-  border-radius: var(--video-radius, 30px);
-
-  will-change: transform, border-radius;
-  box-shadow: 0 24px 80px rgba(43, 28, 35, 0.13);
-}
-
-/* Video content */
-
-.why-elan-video-stage {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  background: #171315;
-}
-
-.why-elan-video-scene {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  opacity: 0;
-  visibility: hidden;
-  transition:
-    opacity 0.55s ease,
-    visibility 0.55s ease;
-}
-
-.why-elan-video-scene.is-active {
-  z-index: 1;
-  opacity: 1;
-  visibility: visible;
-}
-
-.why-elan-video {
-  position: absolute;
-  inset: 0;
+/* line-by-line mask reveal */
+.why-elan-line {
   display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  background: #171315;
+  overflow: hidden;
+  padding: 0.04em 0.08em 0.12em;
+  margin-left: -0.06em;
+}
+.why-elan-line > span {
+  display: block;
+  transform: translateY(112%);
+}
+.why-elan.is-in .why-elan-line > span {
+  animation: why-elan-up 1.25s var(--why-elan-ease) forwards;
+}
+.why-elan.is-in .why-elan-title .why-elan-line:nth-child(2) > span {
+  animation-delay: 0.14s;
 }
 
-/* =========================================
-   VIDEO PLACEHOLDER
-   No image or video source
-========================================= */
+.why-elan-serif-italic {
+  font-style: italic;
+  color: var(--why-elan-accent);
+}
 
-.why-elan-video-placeholder {
-  position: absolute;
-  inset: 0;
+.why-elan-section-intro {
+  text-align: left;
+  padding-bottom: 6px;
+}
+
+.why-elan-lotus-icon {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: clamp(20px, 3vw, 36px);
-
-  background:
-    radial-gradient(
-      ellipse at 75% 25%,
-      rgba(168, 85, 127, 0.22),
-      transparent 45%
-    ),
-    linear-gradient(
-      145deg,
-      #30252c 0%,
-      #1d171b 52%,
-      #100e10 100%
-    );
-
-  color: #f8f1f4;
+  margin-bottom: 12px;
 }
-
-.why-elan-video-index {
-  font-size: 0px;
-  font-weight: 600;
-  letter-spacing: 0.18em;
+.why-elan-lotus-icon path {
+  stroke: var(--why-elan-accent);
+  stroke-width: 1.5;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
 }
-
-.why-elan-video-message {
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(32px, 4vw, 58px);
-  line-height: 0.98;
-  letter-spacing: -0.045em;
-}
-
-.why-elan-video-note {
-  color: rgba(255, 255, 255, 0.58);
-  font-size: 11px;
-  letter-spacing: 0.06em;
-}
-
-/* =========================================
-   VIDEO OVERLAYS
-========================================= */
-
-.why-elan-video-overlay {
-  position: absolute;
-  z-index: 2;
-  inset: 0;
-  pointer-events: none;
-
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.25) 0%,
-    transparent 25%,
-    transparent 65%,
-    rgba(0, 0, 0, 0.35) 100%
-  );
-}
-
-.why-elan-video-topline,
-.why-elan-video-bottomline {
-  position: absolute;
-  z-index: 3;
-  left: clamp(20px, 3vw, 36px);
-  right: clamp(20px, 3vw, 36px);
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-
-  color: white;
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  pointer-events: none;
-}
-
-.why-elan-video-topline {
-  top: clamp(20px, 3vw, 36px);
-}
-
-.why-elan-video-bottomline {
-  bottom: 32px;
-}
-
-.why-elan-video-progress {
-  position: absolute;
-  z-index: 4;
-  right: clamp(20px, 3vw, 36px);
-  bottom: 20px;
-  left: clamp(20px, 3vw, 36px);
-
-  display: flex;
-  gap: 5px;
-}
-
-.why-elan-video-progress span {
-  flex: 1;
-  height: 2px;
-  background: rgba(255, 255, 255, 0.38);
-  transition: background 0.3s ease;
-}
-
-.why-elan-video-progress span.is-active {
-  background: white;
-}
-
-/* =========================================
-   WHY CHOOSE ELAN — BENEFITS
-========================================= */
-
-.why-elan-details {
-  position: relative;
-  z-index: 1;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  min-width: 0;
-
-  opacity: var(--details-opacity, 1);
-  filter: blur(var(--details-blur, 0px));
-
-  transition:
-    opacity 0.15s linear,
-    filter 0.15s linear;
-
-  will-change: opacity, filter;
+.why-elan.is-in .why-elan-lotus-icon path {
+  animation: why-elan-draw 2s 0.9s ease forwards;
 }
 
 .why-elan-details-label {
-  margin-bottom: 22px;
   color: var(--why-elan-accent);
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.18em;
+  margin-bottom: 10px;
 }
 
-.why-elan-details-copy {
-  margin: 0 0 28px;
+.why-elan-details-title {
+  margin: 0;
   font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(22px, 2.4vw, 34px);
-  line-height: 1.28;
-  letter-spacing: -0.035em;
+  font-size: clamp(22px, 2.1vw, 32px);
+  font-weight: 400;
+  line-height: 1.22;
+  letter-spacing: -0.02em;
+  color: var(--why-elan-text);
+}
+.why-elan-details-title .why-elan-line {
+  margin-left: 0;
+}
+.why-elan.is-in .why-elan-details-title .why-elan-line > span {
+  animation-delay: 0.9s;
+}
+.why-elan.is-in .why-elan-details-title .why-elan-line:nth-child(2) > span {
+  animation-delay: 1.02s;
 }
 
-.why-elan-benefits {
+/* =========================================
+   ORBIT GRID: 2 cards · image circle · 2 cards
+========================================= */
+
+.why-elan-orbit-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 440px) minmax(0, 1fr);
+  gap: clamp(20px, 3vw, 48px);
+  align-items: center;
+}
+
+.why-elan-col {
   display: flex;
   flex-direction: column;
+  gap: 20px;
+}
+.why-elan-col.is-left {
+  transform: translateY(-14px);
+}
+.why-elan-col.is-right {
+  transform: translateY(14px);
 }
 
-.why-elan-benefit {
-  display: grid;
-  grid-template-columns: 32px minmax(0, 1fr) 20px;
-  align-items: start;
-  gap: 12px;
-  padding: 20px 0;
-  border-top: 1px solid rgba(32, 26, 28, 0.14);
+/* ---------- CENTER: orbit + image ---------- */
+
+.why-elan-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.why-elan-benefit-number {
-  padding-top: 4px;
-  color: var(--why-elan-accent);
+.why-elan-orbit {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  aspect-ratio: 1;
+  opacity: 0;
+  transform: scale(0.82);
+}
+.why-elan.is-in .why-elan-orbit {
+  animation: why-elan-rise 1.5s 0.45s var(--why-elan-ease) forwards;
+}
+
+/* soft glow behind the circle */
+.why-elan-orbit::before {
+  content: "";
+  position: absolute;
+  inset: 8%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(92, 38, 56, 0.16),
+    rgba(167, 123, 82, 0.08) 45%,
+    transparent 70%
+  );
+  filter: blur(22px);
+}
+
+.why-elan-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(92, 38, 56, 0.16);
+}
+.why-elan-ring::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 9px;
+  height: 9px;
+  margin-top: -4.5px;
+  border-radius: 50%;
+}
+.ring-a {
+  inset: 0;
+  animation: why-elan-spin 38s linear infinite;
+}
+.ring-a::before {
+  left: -4.5px;
+  background: var(--why-elan-accent);
+  box-shadow: 0 0 0 6px rgba(92, 38, 56, 0.12);
+}
+.ring-b {
+  inset: 15%;
+  border-color: rgba(167, 123, 82, 0.4);
+  animation: why-elan-spin 26s linear infinite reverse;
+}
+.ring-b::before {
+  right: -4.5px;
+  background: var(--why-elan-tan);
+  box-shadow: 0 0 0 6px rgba(167, 123, 82, 0.18);
+}
+
+/* circular caption that slowly turns */
+.why-elan-orbit-text {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  animation: why-elan-spin 70s linear infinite;
+}
+.why-elan-orbit-text text {
   font-size: 10px;
   font-weight: 700;
+  fill: var(--why-elan-text);
+  text-transform: uppercase;
 }
 
-.why-elan-benefit h3 {
-  margin: 0 0 7px;
-  font-size: 20px;
-  font-weight: 600;
-  letter-spacing: -0.025em;
+.why-elan-orbit-photo {
+  position: absolute;
+  inset: 20%;
+  padding: 8px;
+  border: 1.5px solid var(--why-elan-border);
+  border-radius: 50%;
+  transition: transform 0.5s ease-out;
+}
+.why-elan-orbit-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  background: linear-gradient(135deg, #dccdc2, #b79a8c);
+  box-shadow: 0 30px 60px -24px rgba(92, 38, 56, 0.5);
+}
+.why-elan-orbit-img img {
+  display: block;
+  width: 92%;
+  height: 64%;
+  object-fit: cover;
+  object-position: 50% 50%;
+   transform-origin: 50% 50%;
+  animation: why-elan-breathe 12s ease-in-out infinite alternate;
 }
 
-.why-elan-benefit p {
-  max-width: 370px;
-  margin: 0;
-  color: var(--why-elan-muted);
-  font-size: 17px;
-  line-height: 1.7;
+.why-elan-explore-pill {
+  margin-top: 40px;
+  padding: 10px 36px;
+  border-radius: 30px;
+  border: 1px solid #c9b9ac;
+  background: #eae1d7;
+  color: var(--why-elan-text);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  transition: background 0.4s ease, color 0.4s ease, transform 0.25s ease-out;
+}
+.why-elan-explore-pill:hover {
+  background: var(--why-elan-accent);
+  color: #ffffff;
 }
 
-.why-elan-benefit-arrow {
+/* ---------- CARDS ---------- */
+
+.why-elan-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 262px;
+  background: var(--why-elan-card-bg);
+  border: 1px solid var(--why-elan-card-border);
+  border-radius: 26px;
+  padding: 24px 24px 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  box-shadow: 0 18px 40px -26px rgba(92, 38, 56, 0.25);
+  opacity: 0;
+  transform: translate(var(--x, 0), 24px);
+  transition: background 0.6s ease, color 0.6s ease, border-color 0.6s ease,
+    box-shadow 0.6s ease;
+}
+.why-elan-card.from-left { --x: -48px; }
+.why-elan-card.from-right { --x: 48px; }
+
+.why-elan.is-in .why-elan-card {
+  animation: why-elan-rise 1.1s var(--d, 1s) var(--why-elan-ease) forwards;
+}
+
+/* decorative quarter-circle, bottom-right */
+.why-elan-card::before {
+  content: "";
+  position: absolute;
+  right: -46px;
+  bottom: -46px;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: rgba(92, 38, 56, 0.06);
+  transition: transform 0.7s var(--why-elan-ease), background 0.6s ease;
+}
+
+/* pointer spotlight */
+.why-elan-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(
+    240px circle at var(--mx, 50%) var(--my, 0%),
+    rgba(255, 255, 255, 0.55),
+    transparent 70%
+  );
+  transition: opacity 0.4s ease;
+}
+.why-elan-card:hover::after {
+  opacity: 1;
+}
+
+/* highlighted card */
+.why-elan-card.is-active {
+  background: var(--why-elan-accent);
+  border-color: var(--why-elan-accent);
+  color: var(--why-elan-cream);
+  box-shadow: 0 30px 56px -24px rgba(92, 38, 56, 0.6);
+}
+.why-elan-card.is-active::before {
+  transform: scale(1.7);
+  background: rgba(255, 255, 255, 0.09);
+}
+.why-elan-card.is-active::after {
+  background: radial-gradient(
+    260px circle at var(--mx, 50%) var(--my, 100%),
+    rgba(255, 255, 255, 0.16),
+    transparent 70%
+  );
+}
+
+.why-elan-card-header,
+.why-elan-card-body,
+.why-elan-card-footer {
+  position: relative;
+  z-index: 1;
+}
+
+.why-elan-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.why-elan-card-num {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
   color: var(--why-elan-accent);
-  font-size: 18px;
-  transition: transform 0.25s ease;
+  transition: color 0.6s ease;
+}
+.why-elan-card.is-active .why-elan-card-num {
+  color: #f0c9d3;
 }
 
-.why-elan-benefit:hover .why-elan-benefit-arrow {
+.why-elan-card-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(92, 38, 56, 0.08);
+  transition: background 0.6s ease;
+}
+.why-elan-card.is-active .why-elan-card-icon {
+  background: rgba(255, 255, 255, 0.14);
+}
+.why-elan-card-icon svg {
+  stroke: var(--why-elan-accent);
+  transition: stroke 0.6s ease;
+}
+.why-elan-card-icon path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+.why-elan-card.is-active .why-elan-card-icon svg {
+  stroke: #f0c9d3;
+}
+.why-elan-card.is-active .why-elan-card-icon path {
+  animation: why-elan-draw 1.1s 0.15s ease both;
+}
+
+.why-elan-card-stat {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 22px;
+  line-height: 1;
+  color: var(--why-elan-accent);
+  font-variant-numeric: tabular-nums;
+  transition: color 0.6s ease;
+}
+.why-elan-card.is-active .why-elan-card-stat {
+  color: #ffffff;
+}
+
+.why-elan-card-body {
+  margin: 22px 0 22px;
+}
+
+.why-elan-card-counter {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(34px, 3.2vw, 46px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--why-elan-accent);
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 8px;
+  transition: color 0.6s ease;
+}
+.why-elan-card.is-active .why-elan-card-counter {
+  color: #ffffff;
+}
+
+.why-elan-card-body h4 {
+  margin: 0 0 10px;
+  font-size: 40px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: inherit;
+  line-height: 1.25;
+}
+
+.why-elan-card-body p {
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.6;
+  color: var(--why-elan-muted);
+  transition: color 0.6s ease;
+}
+.why-elan-card.is-active .why-elan-card-body p {
+  color: rgba(246, 239, 233, 0.82);
+}
+
+.why-elan-card-footer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.why-elan-card-more {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.why-elan-card-arrow {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #e3d8ce;
+  color: var(--why-elan-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  line-height: 1;
+  transition: background 0.5s ease, color 0.5s ease,
+    transform 0.6s var(--why-elan-ease);
+}
+.why-elan-card.is-active .why-elan-card-arrow {
+  background: #ffffff;
   transform: translate(3px, -3px);
 }
 
 /* =========================================
-   CTA
+   FOOTER / SCROLL INDICATOR
 ========================================= */
 
-.why-elan-cta {
+.why-elan-footer {
   display: flex;
+  justify-content: flex-end;
   align-items: center;
-  justify-content: space-between;
-  gap: 20px;
+  gap: 10px;
+  margin-top: 40px;
+}
 
-  width: fit-content;
-  max-width: 100%;
-  margin-top: 24px;
-  padding: 15px 19px;
-
-  border: 1px solid rgba(32, 26, 28, 0.2);
-  border-radius: 100px;
-
-  color: var(--why-elan-text);
+.why-elan-scroll-text {
   font-size: 10px;
   font-weight: 700;
-  letter-spacing: 0.06em;
-  text-decoration: none;
-
-  transition:
-    background 0.3s ease,
-    color 0.3s ease,
-    border-color 0.3s ease;
+  letter-spacing: 0.14em;
+  color: var(--why-elan-text);
 }
 
-.why-elan-cta:hover {
-  border-color: var(--why-elan-text);
-  background: var(--why-elan-text);
-  color: white;
-}
-
-.why-elan-cta-arrow {
-  font-size: 17px;
-}
-
-/* =========================================
-   SCROLL INDICATOR
-========================================= */
-
-.why-elan-scroll-indicator {
-  position: absolute;
-  right: clamp(24px, 4vw, 64px);
-  bottom: 20px;
-
+.why-elan-scroll-pill {
+  width: 18px;
+  height: 28px;
+  border: 1.5px solid var(--why-elan-text);
+  border-radius: 12px;
   display: flex;
-  align-items: center;
-  gap: 14px;
-
-  color: var(--why-elan-muted);
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-
-  transition: opacity 0.1s linear;
+  justify-content: center;
+  padding-top: 4px;
 }
 
-.why-elan-scroll-line {
-  display: block;
-  width: 40px;
-  height: 1px;
-  background: var(--why-elan-accent);
+.why-elan-scroll-dot {
+  width: 3px;
+  height: 6px;
+  background-color: var(--why-elan-text);
+  border-radius: 2px;
+  animation: why-elan-wheel 1.8s infinite;
 }
-
-/* =========================================
-   TABLET
-========================================= */
-
-@media (max-width: 1000px) {
-  .why-elan {
-    min-height: 210vh;
-  }
-
-  .why-elan-inner {
-    padding: 28px;
-  }
-
-  .why-elan-content {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);
-    gap: 28px;
-  }
-
-  .why-elan-video-shell {
-    height: min(48vh, 430px);
-  }
-
-  .why-elan-benefit {
-    padding: 14px 0;
-  }
-
-  .why-elan-benefit p {
-    font-size: 11px;
-  }
+@keyframes why-elan-wheel {
+  0% { opacity: 0; transform: translateY(0); }
+  30% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(9px); }
 }
 
 /* =========================================
-   MOBILE
+   RESPONSIVE
 ========================================= */
 
-@media (max-width: 650px) {
-  .why-elan {
-    min-height: 190vh;
+@media (max-width: 1100px) {
+  .why-elan-heading-row {
+    grid-template-columns: 1fr;
+    margin-bottom: 32px;
   }
 
-  .why-elan-sticky {
-    height: 100svh;
-    min-height: 600px;
+  .why-elan-orbit-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
   }
 
-  .why-elan-inner {
-    padding: 24px 20px;
+  .why-elan-center {
+    grid-column: 1 / -1;
+    order: -1;
+    margin-bottom: 12px;
   }
 
-  .why-elan-heading {
-    display: block;
-    margin-bottom: 22px;
+  .why-elan-orbit {
+    max-width: 400px;
   }
 
-  .why-elan-eyebrow {
-    margin-bottom: 16px;
-    font-size: 9px;
+  .why-elan-col.is-left,
+  .why-elan-col.is-right {
+    transform: none;
   }
+}
 
-  .why-elan-heading h2 {
-    font-size: clamp(43px, 12vw, 68px);
-  }
-
-  .why-elan-intro {
-    margin-top: 14px;
-    font-size: 12px;
-    line-height: 1.55;
-  }
-
-  .why-elan-content {
-    display: flex;
+@media (max-width: 700px) {
+  .why-elan-top-row {
     flex-direction: column;
-    gap: 18px;
-    min-height: 0;
+    gap: 12px;
   }
 
-  .why-elan-video-shell {
-    flex: 0 0 auto;
-    width: 100%;
-    height: clamp(220px, 34svh, 310px);
-    min-height: 220px;
-    transform-origin: center center;
+  .why-elan-subtitle {
+    text-align: left;
   }
 
-  .why-elan-video-placeholder {
-    padding: 20px;
+  .why-elan-orbit-grid {
+    grid-template-columns: 1fr;
   }
 
-  .why-elan-video-message {
-    font-size: clamp(34px, 9vw, 48px);
+  .why-elan-orbit {
+    max-width: 320px;
   }
 
-  .why-elan-video-topline,
-  .why-elan-video-bottomline {
-    left: 20px;
-    right: 20px;
-    font-size: 8px;
+  .why-elan-card {
+    min-height: 230px;
   }
 
-  .why-elan-video-topline {
-    top: 20px;
-  }
-
-  .why-elan-video-bottomline {
-    bottom: 30px;
-  }
-
-  .why-elan-details {
-    overflow: hidden;
-  }
-
-  .why-elan-details-label {
-    margin-bottom: 10px;
-    font-size: 9px;
-  }
-
-  .why-elan-details-copy {
-    margin-bottom: 14px;
-    font-size: 20px;
-  }
-
-  .why-elan-benefit {
-    grid-template-columns: 24px minmax(0, 1fr) 16px;
-    gap: 9px;
-    padding: 12px 0;
-  }
-
-  .why-elan-benefit h3 {
-    font-size: 12px;
-  }
-
-  .why-elan-benefit p {
-    font-size: 10px;
-    line-height: 1.5;
-  }
-
-  .why-elan-benefit-arrow {
-    font-size: 15px;
-  }
-
-  .why-elan-cta {
-    margin-top: 14px;
-    padding: 12px 15px;
-    font-size: 9px;
-  }
-
-  .why-elan-scroll-indicator {
-    right: 20px;
-    bottom: 12px;
-    font-size: 8px;
-  }
-
-  .why-elan-scroll-line {
-    width: 25px;
+  .why-elan-footer {
+    justify-content: flex-start;
   }
 }
 
 /* =========================================
-   REDUCED MOTION ACCESSIBILITY
+   REDUCED MOTION
 ========================================= */
 
 @media (prefers-reduced-motion: reduce) {
   .why-elan *,
   .why-elan *::before,
   .why-elan *::after {
-    scroll-behavior: auto !important;
-    transition-duration: 0.01ms !important;
-    animation-duration: 0.01ms !important;
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .why-elan-top-row,
+  .why-elan-card,
+  .why-elan-orbit {
+    opacity: 1;
+    transform: none;
+  }
+
+  .why-elan-line > span {
+    transform: none;
+  }
+
+  .why-elan-lotus-icon path {
+    stroke-dashoffset: 0;
   }
 }

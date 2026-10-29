@@ -1,0 +1,505 @@
+.about-elan-cta {
+  --products-bg: #f5ece4;
+  --products-ink: #2c201a;
+  --products-muted: #826e63;
+  --elan-gold: #b38b58;
+  --elan-espresso: #201713;
+  --elan-card-bg: rgba(255, 253, 249, 0.78);
+
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 60px 6.5% 80px;
+  background: var(--products-bg);
+  color: var(--products-ink);
+  isolation: isolate;
+}
+
+/* Atmospheric Interior Backdrop Simulation */
+.about-elan-cta-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(circle at 75% 40%, rgba(245, 225, 208, 0.6) 0%, transparent 55%),
+    radial-gradient(circle at 20% 80%, rgba(215, 185, 162, 0.25) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.about-elan-cta-glow {
+  position: absolute;
+  top: 10%;
+  right: 15%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(179, 139, 88, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* TOP HEADER BAR */
+.about-elan-cta-top-bar {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1440px;
+  margin: 0 auto 50px auto;
+  padding-bottom: 25px;
+  border-bottom: 1px solid rgba(179, 139, 88, 0.2);
+}
+
+.about-elan-header-brand {
+  display: flex;
+  flex-direction: column;
+}
+
+.about-elan-brand-title {
+  font-family: Georgia, serif;
+  font-size: 24px;
+  letter-spacing: 4px;
+  color: var(--elan-espresso);
+  font-weight: 500;
+  line-height: 1;
+}
+
+.about-elan-brand-sub {
+  font-size: 8px;
+  letter-spacing: 3px;
+  color: var(--elan-gold);
+  margin-top: 4px;
+  font-weight: 700;
+}
+
+.about-elan-header-tagline {
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--products-muted);
+  font-weight: 600;
+}
+
+/* INNER GRID LAYOUT */
+.about-elan-cta-inner {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(440px, 1fr);
+  align-items: center;
+  gap: clamp(40px, 6vw, 90px);
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+}
+
+.about-elan-cta-copy {
+  min-width: 0;
+}
+
+.about-elan-cta-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 22px;
+  color: var(--elan-gold);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+}
+
+.about-elan-cta-eyebrow > span {
+  font-size: 18px;
+}
+
+.about-elan-cta-copy h2 {
+  margin: 0;
+  font-family: var(--serif, Georgia, "Times New Roman", serif);
+  font-size: clamp(42px, 4.8vw, 70px);
+  font-weight: 400;
+  line-height: 1.06;
+  letter-spacing: -2.5px;
+}
+
+.about-elan-cta-copy h2 em {
+  color: var(--elan-gold);
+  font-weight: 400;
+  font-style: italic;
+}
+
+.about-elan-cta-description {
+  max-width: 440px;
+  margin: 24px 0 0;
+  color: var(--products-muted);
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.about-elan-cta-note {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 32px;
+}
+
+.about-elan-cta-note-icon {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  place-items: center;
+  border: 1px solid rgba(179, 139, 88, 0.4);
+  border-radius: 50%;
+  color: var(--elan-gold);
+  font-size: 16px;
+}
+
+.about-elan-cta-note > div {
+  display: grid;
+  gap: 4px;
+}
+
+.about-elan-cta-note strong {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--elan-espresso);
+}
+
+.about-elan-cta-note > div > span {
+  color: var(--products-muted);
+  font-size: 12px;
+}
+
+/* FEATURES GRID */
+.about-elan-features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px 20px;
+  margin-top: 35px;
+  max-width: 460px;
+}
+
+.about-elan-feature-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--elan-espresso);
+}
+
+.about-elan-feature-icon {
+  font-size: 14px;
+}
+
+.about-elan-cta-decoration {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 45px;
+  color: #a48b7d;
+}
+
+.about-elan-cta-decoration > span:first-child {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 36px;
+}
+
+.about-elan-cta-decoration-line {
+  width: 55px;
+  height: 1px;
+  background: #d0bcad;
+}
+
+.about-elan-cta-decoration > span:last-child {
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+.about-elan-location-footer-note {
+  margin-top: 15px;
+  font-size: 12px;
+  color: var(--products-muted);
+  letter-spacing: 0.5px;
+}
+
+/* ============================================================
+   PRO MAX GLASSMORPHIC BOOKING CARD (Right Column)
+   ============================================================ */
+.about-elan-cta-interactive-area {
+  position: relative;
+  width: 100%;
+}
+
+.about-elan-booking-card {
+  position: relative;
+  z-index: 2;
+  min-width: 0;
+  padding: clamp(32px, 4vw, 48px);
+  border: 1px solid rgba(179, 139, 88, 0.3);
+  border-radius: 20px;
+  background: var(--elan-card-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 35px 80px rgba(44, 32, 26, 0.12);
+}
+
+.about-elan-card-badge-top {
+  display: inline-block;
+  padding: 6px 14px;
+  margin-bottom: 18px;
+  border-radius: 50px;
+  background: rgba(179, 139, 88, 0.15);
+  border: 1px solid rgba(179, 139, 88, 0.3);
+  color: var(--elan-gold);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.about-elan-booking-heading {
+  margin-bottom: 24px;
+}
+
+.about-elan-booking-heading h3 {
+  margin: 0 0 8px;
+  font-family: var(--serif, Georgia, "Times New Roman", serif);
+  font-size: clamp(26px, 2.8vw, 36px);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -1px;
+  color: var(--elan-espresso);
+}
+
+.about-elan-booking-heading h3 em {
+  color: var(--elan-gold);
+  font-weight: 400;
+  font-style: italic;
+}
+
+.about-elan-booking-heading > p {
+  margin: 0;
+  color: var(--products-muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.about-elan-booking-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.about-elan-booking-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+  color: var(--elan-espresso);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.about-elan-booking-form label > span {
+  display: inline;
+  color: var(--elan-gold);
+}
+
+.about-elan-form-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.about-elan-booking-form input,
+.about-elan-booking-form select,
+.about-elan-booking-form textarea {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  min-height: 46px;
+  padding: 12px 14px;
+  border: 1px solid rgba(179, 139, 88, 0.25);
+  border-radius: 8px;
+  outline: none;
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--elan-espresso);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 400;
+  transition: all 0.25s ease;
+}
+
+.about-elan-booking-form textarea {
+  min-height: 80px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.about-elan-booking-form input::placeholder,
+.about-elan-booking-form textarea::placeholder {
+  color: #a89588;
+}
+
+.about-elan-booking-form input:focus,
+.about-elan-booking-form select:focus,
+.about-elan-booking-form textarea:focus {
+  border-color: var(--elan-gold);
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(179, 139, 88, 0.15);
+}
+
+.about-elan-booking-form select {
+  cursor: pointer;
+}
+
+.about-elan-booking-submit {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  min-height: 52px;
+  margin-top: 4px;
+  padding: 8px 10px 8px 22px;
+  border: 1px solid var(--elan-espresso);
+  border-radius: 100px;
+  background: var(--elan-espresso);
+  color: #fffaf6;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.about-elan-submit-arrow {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  font-size: 15px;
+  transition: transform 0.3s ease;
+}
+
+.about-elan-booking-submit:hover {
+  border-color: var(--elan-gold);
+  background: var(--elan-gold);
+}
+
+.about-elan-booking-submit:hover .about-elan-submit-arrow {
+  transform: rotate(45deg);
+}
+
+.about-elan-booking-disclaimer {
+  margin: -2px 0 0;
+  color: #9a8477;
+  font-size: 10px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.about-elan-booking-success {
+  display: flex;
+  min-height: 280px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.about-elan-success-icon {
+  display: grid;
+  width: 54px;
+  height: 54px;
+  place-items: center;
+  border: 1px solid var(--elan-gold);
+  border-radius: 50%;
+  color: var(--elan-gold);
+  font-size: 22px;
+}
+
+.about-elan-booking-success h4 {
+  margin: 20px 0 8px;
+  font-family: Georgia, serif;
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--elan-espresso);
+}
+
+.about-elan-booking-success p {
+  max-width: 320px;
+  color: var(--products-muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.about-elan-booking-reset {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 15px;
+  padding: 10px 20px;
+  border: 1px solid #d0bcad;
+  border-radius: 100px;
+  background: transparent;
+  color: var(--elan-espresso);
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.about-elan-booking-reset:hover {
+  background: var(--elan-espresso);
+  color: #fff;
+}
+
+/* ============================================================
+   RESPONSIVE DESIGN
+   ============================================================ */
+@media (max-width: 1024px) {
+  .about-elan-cta {
+    padding: 50px 5% 70px;
+  }
+
+  .about-elan-cta-inner {
+    grid-template-columns: minmax(0, 1fr) minmax(360px, 0.95fr);
+    gap: 35px;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-elan-cta-top-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 30px;
+  }
+
+  .about-elan-cta-inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .about-elan-features-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .about-elan-booking-card {
+    padding: 24px 20px;
+  }
+
+  .about-elan-form-row {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}

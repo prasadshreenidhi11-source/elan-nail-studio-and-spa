@@ -18,7 +18,6 @@ const services = [
 
 export default function CTA() {
   const sectionRef = useRef(null);
-  const cardStackRef = useRef(null);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -31,7 +30,6 @@ export default function CTA() {
   });
 
   const [submitted, setSubmitted] = useState(false);
-  const [isSpread, setIsSpread] = useState(false); // Tracks if photos should spread/fade
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -45,7 +43,6 @@ export default function CTA() {
   function handleSubmit(event) {
     event.preventDefault();
     setSubmitted(true);
-    setIsSpread(false); // Return cards back when submitted
   }
 
   function resetForm() {
@@ -60,18 +57,6 @@ export default function CTA() {
     });
     setSubmitted(false);
   }
-
-  // Close spread state if user clicks completely outside the interactive area
-  useEffect(() => {
-    function handleClickOutside(event) {
-      const interactiveArea = document.querySelector(".elan-cta-interactive-area");
-      if (interactiveArea && !interactiveArea.contains(event.target)) {
-        setIsSpread(false);
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -94,40 +79,7 @@ export default function CTA() {
         }
       );
 
-      // 2. Fan out the image cards initially
-      gsap.fromTo(
-        ".elan-cta-card-item",
-        { rotate: 0, x: 0, opacity: 0 },
-        {
-          rotate: (index) => (index - 1) * 12,
-          x: (index) => (index - 1) * 18,
-          opacity: 1,
-          duration: 1.2,
-          stagger: 0.15,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: section,
-            start: "top 70%",
-          },
-        }
-      );
-
-      // 3. Animate decorative line
-      gsap.fromTo(
-        ".elan-cta-leader-line",
-        { strokeDashoffset: 200 },
-        {
-          strokeDashoffset: 0,
-          duration: 1.4,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: section,
-            start: "top 65%",
-          },
-        }
-      );
-
-      // 4. Reveal booking form
+      // 2. Reveal booking form card
       gsap.fromTo(
         ".elan-booking-card",
         { opacity: 0, y: 30, scale: 0.98 },
@@ -150,10 +102,23 @@ export default function CTA() {
 
   return (
     <section ref={sectionRef} className="elan-cta" id="book-appointment">
+      {/* Background Atmosphere & Interior Glow */}
+      <div className="elan-cta-bg-overlay" aria-hidden="true" />
       <div className="elan-cta-glow" aria-hidden="true" />
 
+      {/* Top Header Accent */}
+      <div className="elan-cta-top-bar">
+        <div className="elan-header-brand">
+          <span className="elan-brand-title">ÉLAN</span>
+          <span className="elan-brand-sub">NAIL STUDIO & SPA</span>
+        </div>
+        <div className="elan-header-tagline">
+          RELAX / REJUVENATE / REPEAT
+        </div>
+      </div>
+
       <div className="elan-cta-inner">
-        {/* LEFT COLUMN: INTRODUCTION */}
+        {/* LEFT COLUMN: INTRODUCTION & FEATURES */}
         <div className="elan-cta-copy">
           <span className="elan-cta-eyebrow">
             <span>✳</span> YOUR MOMENT OF SELF-CARE
@@ -180,73 +145,50 @@ export default function CTA() {
             </div>
           </div>
 
+          {/* Feature Badges Grid */}
+          <div className="elan-features-grid">
+            <div className="elan-feature-item">
+              <span className="elan-feature-icon">1.</span>
+              <span className="elan-feature-text">PREMIUM SERVICES</span>
+            </div>
+            <div className="elan-feature-item">
+              <span className="elan-feature-icon">2.</span>
+              <span className="elan-feature-text">EXPERT THERAPISTS</span>
+            </div>
+            <div className="elan-feature-item">
+              <span className="elan-feature-icon">3.</span>
+              <span className="elan-feature-text">LUXURY AMBIENCE</span>
+            </div>
+            <div className="elan-feature-item">
+              <span className="elan-feature-icon">4.</span>
+              <span className="elan-feature-text">YOUR WELLNESS OUR PRIORITY</span>
+            </div>
+          </div>
+
           <div className="elan-cta-decoration" aria-hidden="true">
             <span>É</span>
             <div className="elan-cta-decoration-line" />
             <span>BEAUTY · CARE · CONFIDENCE</span>
           </div>
+
+          <div className="elan-location-footer-note">
+            <span>📍</span> Miraya Rose · Whitefield · Bengaluru
+          </div>
         </div>
 
-        {/* RIGHT COLUMN: IMAGE CARDS + BOOKING FORM */}
-        {/* We dynamically append `is-spread` here when user interacts */}
-        <div className={`elan-cta-interactive-area ${isSpread ? "is-spread" : ""}`}>
-          {/* THREE IMAGE CARDS */}
-          <div
-            ref={cardStackRef}
-            className="elan-cta-card-stack"
-            aria-hidden="true"
-          >
-            <svg
-              className="elan-cta-leader-svg"
-              viewBox="0 0 400 400"
-              aria-hidden="true"
-            >
-              <path
-                className="elan-cta-leader-line"
-                d="M 50 150 Q 150 100 280 180"
-                stroke="rgba(179, 139, 88, 0.4)"
-                strokeWidth="1.5"
-                strokeDasharray="200"
-                fill="none"
-              />
-            </svg>
-
-            <div className="elan-cta-card-item card-1">
-              <img
-                src="https://images.unsplash.com/photo-1639629509821-c54cdd984227?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0"
-                alt=""
-                loading="lazy"
-              />
-            </div>
-
-            <div className="elan-cta-card-item card-2">
-              <img
-                src="https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=1000&q=85"
-                alt=""
-                loading="lazy"
-              />
-            </div>
-
-            <div className="elan-cta-card-item card-3">
-              <img
-                src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=1000&q=85"
-                alt=""
-                loading="lazy"
-              />
-            </div>
-          </div>
-
-          {/* BOOKING FORM CARD */}
+        {/* RIGHT COLUMN: PRO MAX GLASSBOOKING FORM */}
+        <div className="elan-cta-interactive-area">
           <div className="elan-booking-card">
-            <div className="elan-booking-heading">
-              <span className="elan-booking-eyebrow">
-                LET&apos;S PLAN YOUR VISIT
-              </span>
+            
+            {/* Action pill button header */}
+            <div className="elan-card-badge-top">
+              <span>BOOK AN APPOINTMENT</span>
+            </div>
 
+            <div className="elan-booking-heading">
               <h3>
                 Book your <em>appointment.</em>
               </h3>
-
               <p>
                 Share a few details and we&apos;ll help you plan your visit.
               </p>
@@ -255,14 +197,11 @@ export default function CTA() {
             {submitted ? (
               <div className="elan-booking-success" role="status">
                 <span className="elan-success-icon">✓</span>
-
                 <h4>Thank you, {formData.name}!</h4>
-
                 <p>
                   Your appointment request has been completed in this demo.
                   Please contact the salon directly to confirm your booking.
                 </p>
-
                 <button
                   type="button"
                   className="elan-booking-reset"
@@ -272,11 +211,7 @@ export default function CTA() {
                 </button>
               </div>
             ) : (
-              <form
-                className="elan-booking-form"
-                onSubmit={handleSubmit}
-                onFocus={() => setIsSpread(true)} // Triggers spreading when any field is focused
-              >
+              <form className="elan-booking-form" onSubmit={handleSubmit}>
                 <div className="elan-form-row">
                   <label>
                     Your name <span>*</span>
@@ -296,7 +231,7 @@ export default function CTA() {
                     <input
                       type="tel"
                       name="phone"
-                      placeholder="Your phone number"
+                      placeholder="+91 98765 43210"
                       value={formData.phone}
                       onChange={handleChange}
                       autoComplete="tel"
@@ -388,7 +323,8 @@ export default function CTA() {
                 </label>
 
                 <button className="elan-booking-submit" type="submit">
-                  <span>booking</span>
+                  <span>Book Appointment</span>
+                  <span className="elan-submit-arrow">↗</span>
                 </button>
 
                 <p className="elan-booking-disclaimer">
@@ -401,4 +337,4 @@ export default function CTA() {
       </div>
     </section>
   );
-}    
+}

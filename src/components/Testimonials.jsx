@@ -409,16 +409,14 @@ export default function Testimonials() {
         </span>
 
         <a
-          href="https://elannailspa.com/"
-          target="_blank"
-          rel="noreferrer"
-          className="testimonials-cta"
-        >
-          <span>Discover Elan</span>
-          <span className="testimonials-cta-arrow" aria-hidden="true">
-            ↗
-          </span>
-        </a>
+href="/about"
+className="testimonials-cta"
+
+>
+
+<span>Discover Elan</span> <span className="testimonials-cta-arrow" aria-hidden="true">
+↗ </span> </a>
+
       </div>
     </section>
   );
