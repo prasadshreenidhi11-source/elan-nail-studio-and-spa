@@ -1,4 +1,4 @@
-* Hide default cursor and show custom ones */
+/* Hide default cursor and show custom ones */
 @media (pointer: fine) {
   body {
     cursor: default; /* Keep default or use 'none' if you want to hide default entirely */
