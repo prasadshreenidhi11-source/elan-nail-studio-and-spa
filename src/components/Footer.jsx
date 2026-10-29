@@ -96,9 +96,26 @@ export default function Footer() {
         {/* 1. Main content */}
         <div className="ef-cols">
           <div data-r style={{ '--d': 1 }}>
-            <a className="ef-logo" href="/">
-              <img src={LOGO_SRC} alt="élan Nail Studio & Spa" width="200" height="72" />
-            </a>
+            <a className="ef-logo" href="/" aria-label="ÉLAN Nail Studio and Spa Home">
+  <video
+className="ef-logo-video"
+autoPlay
+muted
+playsInline
+preload="auto"
+aria-label="ÉLAN Nail Studio and Spa animated butterfly logo"
+onEnded={(e) => {
+e.currentTarget.pause()
+}}
+
+>
+
+  <source src="/videos/elan-butterfly-logo.mp4" type="video/mp4" />
+  Your browser does not support the video.
+</video>
+
+</a>
+
             <p className="ef-tag">
               We will help you rediscover the magic of Self-Care through bespoke luxury rituals and
               master craftsmanship.
@@ -146,26 +163,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* 2. Join Our Club, now below the content */}
-        <section className="ef-club ef-glass" onPointerMove={glow} data-r aria-labelledby="ef-jc">
-          <div>
-            <h2 id="ef-jc">Join Our Club</h2>
-            <p>Exclusive offers &amp; luxury pampering updates.</p>
-          </div>
-          <form className="ef-form" onSubmit={onSubmit} noValidate>
-            <label htmlFor="ef-email" className="ef-sr">Email address</label>
-            <input
-              id="ef-email"
-              type="email"
-              autoComplete="email"
-              placeholder="Enter your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <button className="ef-join" type="submit">Join <Icon id="ef-ar" /></button>
-          </form>
-          <p className={`ef-msg${msg?.ok ? ' ef-ok' : ''}`} role="status">{msg?.text}</p>
-        </section>
+ 
 
         <div className="ef-div" data-r aria-hidden="true">
           <svg className="ef-sw" viewBox="0 0 200 26"><path d="M2 16C45 4 110 24 198 8" stroke="url(#ef-g)" /></svg>

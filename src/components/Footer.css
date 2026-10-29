@@ -40,11 +40,57 @@
 .ef-cols{display:grid;grid-template-columns:1.35fr .7fr 1.1fr 1fr;gap:clamp(28px,4vw,56px);padding-bottom:clamp(44px,5vw,70px)}
 @media(max-width:1020px){.ef-cols{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.ef-cols{grid-template-columns:1fr}}
-.ef-logo{display:inline-block}
-.elan-footer{--ef-logo-filter:brightness(1.4)}
-.ef-logo img{display:block;height:143px;width:auto;max-width:290px;object-fit:contain;filter:var(--ef-logo-filter);transition:filter .3s}
-.ef-tag{margin:22px 0 26px;color:var(--ef-mut);max-width:34ch}
-.ef-soc{display:flex;gap:12px}
+.elan-footer {
+  --ef-logo-filter: brightness(1.4);
+}
+
+.ef-logo {
+  display: flex;
+  justify-content: center; /* Centers the logo horizontally */
+  align-items: center;
+  width: 100%;             /* Ensures the wrapper spans the full column width */
+}
+/* Container holding both the logo and the butterfly side by side */
+.ef-logo-container {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 16px !important; /* Space between the butterfly and the logo text */
+  width: 100% !important;
+}
+
+
+
+/* Ensure your existing logo styles remain intact */
+/* Animated ÉLAN butterfly logo video */
+.ef-logo-video {
+display: block;
+width: 290px;
+max-width: 100%;
+height: auto;
+aspect-ratio: 16 / 9;
+object-fit: contain;
+object-position: center;
+border: none;
+outline: none;
+background: transparent;
+}
+
+
+
+.ef-tag {
+  margin: 22px auto 26px;  /* Centers the text block container */
+  text-align: center;      /* Centers the text lines underneath */
+  color: var(--ef-mut);
+  max-width: 34ch;
+}
+
+.ef-soc {
+  display: flex;
+  justify-content: center; /* Centers the social icon circles */
+  gap: 12px;
+}
+
 .ef-soc a{width:48px;height:48px;display:grid;place-items:center;border-radius:50%;border:1px solid var(--ef-line);background:#ffffff08;transition:all .25s}
 .ef-soc a:hover{background:var(--ef-coral);border-color:var(--ef-coral);transform:translateY(-3px);box-shadow:0 14px 22px -12px var(--ef-coral)}
 .elan-footer h3{font-family:var(--ef-serif);font-size:22px;line-height:1.2;margin:0 0 22px}
